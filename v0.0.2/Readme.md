@@ -4,7 +4,7 @@
 
 **An intelligent, multi-database command-line client written in Python.**
 
-[![Version](https://img.shields.io/badge/version-0.0.2--beta-blue.svg)](https://github.com/developer/TerSQL)
+[![Version](https://img.shields.io/badge/version-0.0.2--beta-blue.svg)](https://github.com/developersayandutta/TerSQL)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://python.org)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/status-beta-orange.svg)]()
