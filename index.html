@@ -3,157 +3,101 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>TerSQL — Beginner-Friendly SQL Terminal with Auto-Correction</title>
-
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>TerSQL — SQL Terminal for Everyone. No Coding Knowledge Required.</title>
     <meta name="description"
-        content="TerSQL is a beginner-friendly SQL terminal that auto-corrects queries, explains errors, and helps you learn SQL while you code. Built for students and developers who struggle with syntax." />
-
+        content="TerSQL is a beginner-friendly, multi-database SQL terminal. Auto-corrects queries, supports MySQL, PostgreSQL & MongoDB. No prior coding knowledge needed." />
     <meta name="keywords"
-        content="SQL terminal, beginner SQL, learn SQL, Multi-Database CLI alternative, SQL auto correction, SQL learning tool, database terminal, SQL assistant, TerSQL" />
-
+        content="SQL terminal, beginner SQL, learn SQL, multi-database CLI, SQL auto correction, TerSQL, MySQL PostgreSQL MongoDB terminal" />
     <meta name="author" content="Sayan Dutta" />
-    <meta name="robots" content="index, follow" />
-
-    <!-- Open Graph (for LinkedIn, WhatsApp, etc.) -->
-    <meta property="og:title" content="TerSQL — SQL Terminal for Beginners" />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:title" content="TerSQL — SQL for Everyone" />
     <meta property="og:description"
-        content="Stop struggling with SQL syntax. TerSQL auto-fixes queries, explains errors, and helps you learn SQL interactively." />
+        content="Write SQL without memorising syntax. TerSQL auto-fixes, suggests, and explains — for beginners and experts alike." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://tersql.dev" />
-    <meta property="og:image" content="https://tersql.dev/preview.png" />
-
-    <!-- Twitter Card -->
+    <meta property="og:url" content="https://developersayandutta.github.io/TerSQL" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="TerSQL — Learn SQL Without Frustration" />
-    <meta name="twitter:description"
-        content="Auto-correct SQL, get suggestions, and learn while coding. Perfect for beginners." />
-    <meta name="twitter:image" content="https://tersql.dev/preview.png" />
-
-    <!-- Canonical -->
-    <link rel="canonical" href="https://tersql.dev" />
-
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap"
         rel="stylesheet" />
-    <script type="application/ld+json">
-    {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "TerSQL",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Windows, Linux, macOS",
-    "description": "Beginner-friendly SQL terminal with auto-correction, suggestions, and learning-focused features.",
-    "author": {
-        "@type": "Person",
-        "name": "Sayan Dutta"
-    }
-    }
-    </script>
-    <!-- Favicon (basic) -->
-    <link rel="icon" type="image/png" href="/icons/favicon.png" sizes="32x32" />
-    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
-    <link rel="shortcut icon" href="/icons/favicon.ico" type="image/x-icon">
-
-    <!-- Apple (iOS) -->
-    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
-
-    <!-- Android / PWA -->
-    <link rel="manifest" href="/icons/site.webmanifest" />
-    <meta name="theme-color" content="#0a0d0f" />
-
-    <!-- Microsoft Tiles -->
-    <meta name="msapplication-TileColor" content="#0a0d0f" />
-    <meta name="msapplication-TileImage" content="/icons/mstile-150x150.png" />
-
-    <!-- Open Graph Image (important for sharing) -->
-    <meta property="og:image" content="https://tersql.dev/icons/preview.png" />
-    <meta name="twitter:image" content="https://tersql.dev/icons/preview.png" />
     <style>
         *,
         *::before,
         *::after {
             box-sizing: border-box;
             margin: 0;
-            padding: 0;
+            padding: 0
         }
 
         :root {
-            --bg: #0a0d0f;
-            --bg2: #0f1419;
-            --bg3: #151c24;
-            --border: #1e2a36;
-            --border2: #243040;
-            --text: #c9d8e8;
-            --text-dim: #5a7a96;
-            --text-bright: #eaf3ff;
+            --bg: #070b0e;
+            --bg2: #0c1219;
+            --bg3: #111923;
+            --bg4: #161f2a;
+            --border: #1a2535;
+            --border2: #223040;
+            --text: #b8cfe0;
+            --text-dim: #4a6a85;
+            --text-bright: #e8f4ff;
             --accent: #00d4ff;
-            --accent2: #0066ff;
+            --accent2: #0055ff;
             --accent3: #00ff9d;
             --warn: #ffaa00;
-            --error: #ff4466;
-            --green: #00e676;
-            --purple: #bf80ff;
-            --font-mono: 'JetBrains Mono', monospace;
-            --font-sans: 'Syne', sans-serif;
+            --error: #ff3355;
+            --purple: #a78bfa;
+            --pink: #f472b6;
+            --mono: 'JetBrains Mono', monospace;
+            --sans: 'Space Grotesk', sans-serif;
+            --display: 'Syne', sans-serif;
         }
 
         html {
-            scroll-behavior: smooth;
+            scroll-behavior: smooth
         }
 
         body {
             background: var(--bg);
             color: var(--text);
-            font-family: var(--font-mono);
+            font-family: var(--mono);
             line-height: 1.6;
-            overflow-x: hidden;
+            overflow-x: hidden
         }
 
-        /* ── NOISE OVERLAY ── */
+        /* NOISE */
         body::before {
             content: '';
             position: fixed;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
             pointer-events: none;
             z-index: 0;
-            opacity: 0.4;
+            opacity: .35
         }
 
-        /* ── SCANLINES ── */
-        body::after {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 212, 255, 0.012) 2px, rgba(0, 212, 255, 0.012) 4px);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* ── GRID BACKGROUND ── */
+        /* GRID */
         .grid-bg {
             position: fixed;
             inset: 0;
             z-index: 0;
-            background-image:
-                linear-gradient(var(--border) 1px, transparent 1px),
-                linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 48px 48px;
-            mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 100%);
-            opacity: 0.3;
+            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 52px 52px;
+            mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 20%, transparent 100%);
+            opacity: .25
         }
 
         section,
         nav,
-        footer {
+        footer,
+        .demo-section,
+        .arch-section,
+        .usecase-section,
+        .tech-section,
+        .bench-section,
+        .coffee-section {
             position: relative;
-            z-index: 1;
+            z-index: 1
         }
 
         /* ── NAV ── */
@@ -161,362 +105,447 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1.25rem 5vw;
+            padding: 1.1rem 5vw;
             border-bottom: 1px solid var(--border);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
             position: sticky;
             top: 0;
-            z-index: 100;
-            background: rgba(10, 13, 15, 0.82);
+            z-index: 200;
+            background: rgba(7, 11, 14, .88)
         }
 
         .nav-logo {
-            font-family: var(--font-sans);
-            font-size: 1.35rem;
+            font-family: var(--display);
+            font-size: 1.4rem;
             font-weight: 800;
             color: var(--accent);
-            letter-spacing: -0.02em;
             text-decoration: none;
+            letter-spacing: -.03em
         }
 
         .nav-logo span {
             color: var(--text-dim);
-            font-weight: 400;
+            font-weight: 700
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
-            list-style: none;
+            gap: 1.8rem;
+            list-style: none
         }
 
         .nav-links a {
             color: var(--text-dim);
             text-decoration: none;
-            font-size: 0.8rem;
-            letter-spacing: 0.08em;
+            font-size: .75rem;
+            letter-spacing: .1em;
             text-transform: uppercase;
-            transition: color 0.2s;
+            transition: color .2s
         }
 
         .nav-links a:hover {
-            color: var(--accent);
+            color: var(--accent)
+        }
+
+        .nav-right {
+            display: flex;
+            gap: .7rem;
+            align-items: center
         }
 
         .nav-cta {
             background: transparent;
             border: 1px solid var(--accent);
             color: var(--accent);
-            padding: 0.45rem 1.1rem;
-            font-family: var(--font-mono);
-            font-size: 0.78rem;
+            padding: .4rem 1rem;
+            font-family: var(--mono);
+            font-size: .75rem;
             cursor: pointer;
             text-decoration: none;
-            transition: all 0.2s;
-            letter-spacing: 0.05em;
+            transition: all .2s;
+            letter-spacing: .04em
         }
 
         .nav-cta:hover {
             background: var(--accent);
-            color: var(--bg);
+            color: var(--bg)
+        }
+
+        .nav-coffee {
+            background: rgba(255, 193, 7, .1);
+            border: 1px solid rgba(255, 193, 7, .35);
+            color: #ffc107;
+            padding: .4rem 1rem;
+            font-family: var(--mono);
+            font-size: .75rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all .2s;
+            letter-spacing: .04em
+        }
+
+        .nav-coffee:hover {
+            background: #ffc107;
+            color: var(--bg)
         }
 
         /* ── HERO ── */
         .hero {
-            min-height: 92vh;
+            min-height: 96vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             padding: 8rem 5vw 5rem;
             position: relative;
+            overflow: hidden
         }
 
-        .hero-badge {
+        .hero-glow {
+            position: absolute;
+            top: -10%;
+            left: -5%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(0, 212, 255, .06) 0%, transparent 70%);
+            pointer-events: none
+        }
+
+        .hero-glow2 {
+            position: absolute;
+            bottom: -20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 255, 157, .04) 0%, transparent 70%);
+            pointer-events: none
+        }
+
+        .hero-eyebrow {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            background: rgba(0, 212, 255, 0.06);
-            border: 1px solid rgba(0, 212, 255, 0.2);
+            gap: .6rem;
+            background: rgba(0, 212, 255, .07);
+            border: 1px solid rgba(0, 212, 255, .22);
             color: var(--accent);
-            padding: 0.3rem 0.85rem;
-            font-size: 0.72rem;
-            letter-spacing: 0.12em;
+            padding: .3rem .9rem;
+            font-size: .68rem;
+            letter-spacing: .14em;
             text-transform: uppercase;
-            margin-bottom: 2rem;
+            margin-bottom: 1.8rem;
             width: fit-content;
-            animation: fadeUp 0.6s ease both;
+            animation: fadeUp .6s ease both
         }
 
-        .badge-dot {
+        .pulse-dot {
             width: 6px;
             height: 6px;
             border-radius: 50%;
             background: var(--accent3);
             box-shadow: 0 0 8px var(--accent3);
-            animation: pulse 2s ease infinite;
+            animation: pulse 2s ease infinite
         }
 
         @keyframes pulse {
 
             0%,
             100% {
-                opacity: 1;
+                opacity: 1
             }
 
             50% {
-                opacity: 0.4;
+                opacity: .3
             }
         }
 
-        .hero h1 {
-            font-family: var(--font-sans);
-            font-size: clamp(3.2rem, 8vw, 7.5rem);
+        .hero-headline {
+            font-family: var(--display);
+            font-size: clamp(3rem, 7.5vw, 7rem);
             font-weight: 800;
-            line-height: 0.95;
-            letter-spacing: -0.04em;
+            line-height: .93;
+            letter-spacing: -.04em;
             color: var(--text-bright);
-            margin-bottom: 0.15em;
-            animation: fadeUp 0.7s 0.1s ease both;
+            margin-bottom: .2em;
+            animation: fadeUp .7s .1s ease both
         }
 
-        .hero h1 .accent-word {
+        .hero-headline .stroke {
             color: transparent;
-            -webkit-text-stroke: 2px var(--accent);
+            -webkit-text-stroke: 2px var(--accent)
         }
 
-        .hero-subtitle {
-            font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+        .hero-headline .stroke2 {
+            color: transparent;
+            -webkit-text-stroke: 2px var(--accent3)
+        }
+
+        .hero-sub {
+            font-family: var(--sans);
+            font-size: clamp(.9rem, 1.6vw, 1.1rem);
             color: var(--text-dim);
-            max-width: 560px;
-            margin: 1.5rem 0 2.5rem;
-            line-height: 1.8;
-            animation: fadeUp 0.7s 0.2s ease both;
+            max-width: 580px;
+            margin: 1.8rem 0 2.5rem;
+            line-height: 1.85;
+            animation: fadeUp .7s .2s ease both
+        }
+
+        .hero-sub strong {
+            color: var(--text-bright);
+            font-weight: 600
+        }
+
+        .badge-row {
+            display: flex;
+            gap: .5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.8rem;
+            animation: fadeUp .7s .15s ease both
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid var(--border2);
+            color: var(--text-dim);
+            font-size: .65rem;
+            padding: .2rem .65rem;
+            letter-spacing: .07em
+        }
+
+        .badge.cyan {
+            border-color: rgba(0, 212, 255, .3);
+            color: var(--accent)
+        }
+
+        .badge.green {
+            border-color: rgba(0, 255, 157, .3);
+            color: var(--accent3)
+        }
+
+        .badge.amber {
+            border-color: rgba(255, 170, 0, .3);
+            color: var(--warn)
+        }
+
+        .badge.purple {
+            border-color: rgba(167, 139, 250, .3);
+            color: var(--purple)
         }
 
         .hero-actions {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
-            animation: fadeUp 0.7s 0.3s ease both;
+            animation: fadeUp .7s .3s ease both
         }
 
         .btn-primary {
             background: var(--accent);
             color: var(--bg);
-            padding: 0.75rem 1.8rem;
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
+            padding: .75rem 1.8rem;
+            font-family: var(--mono);
+            font-size: .82rem;
             font-weight: 700;
             border: none;
             cursor: pointer;
             text-decoration: none;
-            letter-spacing: 0.04em;
-            transition: all 0.2s;
+            letter-spacing: .04em;
+            transition: all .2s;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: .5rem;
+            clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px))
         }
 
         .btn-primary:hover {
             background: var(--accent3);
-            transform: translateY(-1px);
+            transform: translateY(-2px)
         }
 
         .btn-ghost {
             background: transparent;
             border: 1px solid var(--border2);
             color: var(--text);
-            padding: 0.75rem 1.8rem;
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
+            padding: .75rem 1.8rem;
+            font-family: var(--mono);
+            font-size: .82rem;
             cursor: pointer;
             text-decoration: none;
-            letter-spacing: 0.04em;
-            transition: all 0.2s;
+            letter-spacing: .04em;
+            transition: all .2s;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: .5rem
         }
 
         .btn-ghost:hover {
             border-color: var(--accent);
-            color: var(--accent);
+            color: var(--accent)
         }
 
         .hero-meta {
             display: flex;
-            gap: 2rem;
-            margin-top: 3.5rem;
+            gap: 2.5rem;
+            margin-top: 3rem;
             flex-wrap: wrap;
-            animation: fadeUp 0.7s 0.4s ease both;
+            animation: fadeUp .7s .4s ease both
         }
 
         .meta-item {
             display: flex;
             flex-direction: column;
-            gap: 0.15rem;
+            gap: .1rem
         }
 
         .meta-label {
-            font-size: 0.65rem;
+            font-size: .6rem;
             color: var(--text-dim);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
+            letter-spacing: .18em;
+            text-transform: uppercase
         }
 
         .meta-value {
-            font-size: 0.9rem;
+            font-size: .9rem;
             color: var(--text-bright);
-            font-weight: 500;
+            font-weight: 500
         }
 
-        .meta-value .green {
-            color: var(--green);
+        .meta-value .g {
+            color: var(--accent3)
         }
 
-        /* ── TERMINAL WINDOW ── */
-        .terminal-wrap {
+        .meta-value .c {
+            color: var(--accent)
+        }
+
+        /* FLOATING TERMINAL */
+        .terminal-float {
             position: absolute;
             right: 4vw;
             top: 50%;
-            transform: translateY(-45%);
-            width: min(48%, 620px);
-            animation: fadeLeft 0.9s 0.3s ease both;
-            display: none;
+            transform: translateY(-44%);
+            width: min(46%, 600px);
+            animation: fadeLeft .9s .35s ease both;
+            display: none
         }
 
-        @media (min-width: 1024px) {
-            .terminal-wrap {
-                display: block;
+        @media(min-width:1100px) {
+            .terminal-float {
+                display: block
             }
         }
 
         .terminal {
             background: var(--bg2);
             border: 1px solid var(--border2);
-            border-radius: 2px;
             overflow: hidden;
-            box-shadow:
-                0 0 0 1px rgba(0, 212, 255, 0.05),
-                0 32px 80px rgba(0, 0, 0, 0.6),
-                0 0 120px rgba(0, 212, 255, 0.04);
+            box-shadow: 0 0 0 1px rgba(0, 212, 255, .04), 0 32px 80px rgba(0, 0, 0, .7), 0 0 100px rgba(0, 212, 255, .04)
         }
 
-        .terminal-bar {
+        .t-bar {
             background: var(--bg3);
             border-bottom: 1px solid var(--border);
-            padding: 0.7rem 1rem;
+            padding: .65rem 1rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: .5rem
         }
 
-        .t-dot {
+        .dot {
             width: 10px;
             height: 10px;
-            border-radius: 50%;
+            border-radius: 50%
         }
 
-        .t-dot.red {
-            background: #ff5f57;
+        .dot.r {
+            background: #ff5f57
         }
 
-        .t-dot.amber {
-            background: #febc2e;
+        .dot.a {
+            background: #febc2e
         }
 
-        .t-dot.green {
-            background: #28c840;
+        .dot.g {
+            background: #28c840
         }
 
-        .t-title {
+        .t-title-bar {
             margin-left: auto;
-            font-size: 0.7rem;
+            font-size: .68rem;
             color: var(--text-dim);
-            letter-spacing: 0.08em;
+            letter-spacing: .07em
         }
 
-        .terminal-body {
+        .t-body {
             padding: 1.2rem 1.4rem;
-            font-size: 0.8rem;
-            line-height: 1.9;
-            min-height: 340px;
+            font-size: .78rem;
+            line-height: 2;
+            min-height: 320px
         }
 
         .t-line {
-            display: block;
+            display: block
         }
 
         .t-prompt {
-            color: var(--accent3);
-        }
-
-        .t-cmd {
-            color: var(--text-bright);
+            color: var(--accent3)
         }
 
         .t-kw {
-            color: var(--accent);
+            color: var(--accent)
         }
 
         .t-str {
-            color: var(--warn);
+            color: var(--warn)
         }
 
         .t-ok {
-            color: var(--green);
+            color: var(--accent3)
         }
 
         .t-err {
-            color: var(--error);
+            color: var(--error)
         }
 
         .t-dim {
-            color: var(--text-dim);
-        }
-
-        .t-purple {
-            color: var(--purple);
+            color: var(--text-dim)
         }
 
         .t-num {
-            color: var(--accent2);
-            color: #63b3ff;
+            color: #63b3ff
         }
 
-        .t-table {
-            margin: 0.2rem 0;
+        .t-fix {
+            color: var(--purple)
+        }
+
+        .t-tbl {
+            margin: .3rem 0;
             border-collapse: collapse;
-            font-size: 0.75rem;
+            font-size: .72rem
         }
 
-        .t-table td,
-        .t-table th {
-            padding: 0.1rem 0.8rem 0.1rem 0;
-            white-space: nowrap;
-        }
-
-        .t-table th {
+        .t-tbl th {
             color: var(--text-dim);
             font-weight: 400;
             border-bottom: 1px solid var(--border);
+            padding: .1rem .9rem .1rem 0
         }
 
-        .t-table td {
+        .t-tbl td {
             color: var(--text);
+            padding: .1rem .9rem .1rem 0
         }
 
-        .t-table td.num {
-            color: #63b3ff;
+        .t-tbl td.n {
+            color: #63b3ff
         }
 
         .cursor {
             display: inline-block;
-            width: 8px;
-            height: 1em;
+            width: 7px;
+            height: .9em;
             background: var(--accent);
             vertical-align: middle;
-            animation: blink 1.1s step-end infinite;
+            animation: blink 1.1s step-end infinite
         }
 
         @keyframes blink {
@@ -531,82 +560,437 @@
             }
         }
 
-        /* ── STATS STRIP ── */
+        /* ── STATS ── */
         .stats-strip {
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
-            padding: 1.5rem 5vw;
+            padding: 1.6rem 5vw;
             display: flex;
-            gap: 3rem;
-            flex-wrap: wrap;
-            background: rgba(15, 20, 25, 0.5);
+            gap: 0;
+            background: rgba(12, 18, 25, .6);
+            overflow: hidden
         }
 
         .stat {
             display: flex;
             align-items: baseline;
-            gap: 0.6rem;
+            gap: .6rem;
+            padding: 0 2.5rem;
+            border-right: 1px solid var(--border);
+            flex: 1;
+            min-width: 120px
+        }
+
+        .stat:first-child {
+            padding-left: 0
+        }
+
+        .stat:last-child {
+            border-right: none
         }
 
         .stat-n {
-            font-family: var(--font-sans);
-            font-size: 2rem;
+            font-family: var(--display);
+            font-size: 2.2rem;
             font-weight: 800;
             color: var(--accent);
-            line-height: 1;
+            line-height: 1
         }
 
         .stat-l {
-            font-size: 0.78rem;
-            color: var(--text-dim);
+            font-size: .72rem;
+            color: var(--text-dim)
         }
 
-        /* ── SECTION ── */
+        /* ── SECTION COMMONS ── */
         .section {
-            padding: 6rem 5vw;
+            padding: 6rem 5vw
         }
 
-        .section-tag {
-            font-size: 0.68rem;
-            letter-spacing: 0.2em;
+        .sec-tag {
+            font-size: .65rem;
+            letter-spacing: .22em;
             text-transform: uppercase;
             color: var(--accent);
-            margin-bottom: 0.7rem;
+            margin-bottom: .8rem
         }
 
-        .section-title {
-            font-family: var(--font-sans);
-            font-size: clamp(1.8rem, 4vw, 3rem);
+        .sec-title {
+            font-family: var(--display);
+            font-size: clamp(1.8rem, 3.8vw, 3rem);
             font-weight: 800;
-            letter-spacing: -0.03em;
+            letter-spacing: -.035em;
             color: var(--text-bright);
-            line-height: 1.1;
-            margin-bottom: 1rem;
+            line-height: 1.08;
+            margin-bottom: 1rem
         }
 
-        .section-body {
+        .sec-body {
             color: var(--text-dim);
-            max-width: 520px;
-            font-size: 0.9rem;
-            line-height: 1.8;
+            max-width: 540px;
+            font-size: .88rem;
+            line-height: 1.85;
+            font-family: var(--sans)
         }
 
-        /* ── FEATURE GRID ── */
+        /* ── WHO IT'S FOR ── */
+        .usecase-section {
+            padding: 6rem 5vw;
+            background: var(--bg2);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border)
+        }
+
+        .usecase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3.5rem
+        }
+
+        .usecase-card {
+            border: 1px solid var(--border2);
+            padding: 2rem;
+            background: var(--bg3);
+            position: relative;
+            overflow: hidden;
+            transition: all .3s
+        }
+
+        .usecase-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, .4), 0 0 0 1px rgba(0, 212, 255, .1)
+        }
+
+        .usecase-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-bar, var(--accent));
+            opacity: .7
+        }
+
+        .usecase-card.s1::before {
+            background: linear-gradient(90deg, var(--accent), var(--accent3))
+        }
+
+        .usecase-card.s2::before {
+            background: linear-gradient(90deg, var(--accent2), var(--purple))
+        }
+
+        .usecase-card.s3::before {
+            background: linear-gradient(90deg, var(--warn), var(--pink))
+        }
+
+        .uc-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block
+        }
+
+        .uc-label {
+            font-size: .62rem;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: .4rem
+        }
+
+        .uc-title {
+            font-family: var(--display);
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-bright);
+            margin-bottom: .6rem
+        }
+
+        .uc-desc {
+            font-family: var(--sans);
+            font-size: .8rem;
+            color: var(--text-dim);
+            line-height: 1.75
+        }
+
+        .uc-tag {
+            display: inline-block;
+            margin-top: 1rem;
+            background: rgba(0, 212, 255, .07);
+            border: 1px solid rgba(0, 212, 255, .18);
+            color: var(--accent);
+            font-size: .65rem;
+            padding: .2rem .6rem;
+            letter-spacing: .07em
+        }
+
+        .uc-card.s2 .uc-tag {
+            background: rgba(167, 139, 250, .07);
+            border-color: rgba(167, 139, 250, .2);
+            color: var(--purple)
+        }
+
+        .uc-card.s3 .uc-tag {
+            background: rgba(255, 170, 0, .07);
+            border-color: rgba(255, 170, 0, .2);
+            color: var(--warn)
+        }
+
+        /* ── DEMO SECTION ── */
+        .demo-section {
+            padding: 6rem 5vw;
+            background: var(--bg)
+        }
+
+        .demo-wrap {
+            max-width: 860px;
+            margin: 3.5rem auto 0;
+            border: 1px solid var(--border2);
+            background: var(--bg2);
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, .5), 0 0 0 1px rgba(0, 212, 255, .05)
+        }
+
+        .demo-bar {
+            background: var(--bg3);
+            border-bottom: 1px solid var(--border);
+            padding: .7rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem
+        }
+
+        .demo-bar-title {
+            margin-left: auto;
+            font-size: .68rem;
+            color: var(--text-dim);
+            letter-spacing: .07em
+        }
+
+        .demo-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 380px
+        }
+
+        @media(max-width:700px) {
+            .demo-inner {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .demo-left {
+            border-right: 1px solid var(--border);
+            padding: 1.5rem
+        }
+
+        .demo-right {
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, .15)
+        }
+
+        .demo-panel-title {
+            font-size: .6rem;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+            padding-bottom: .5rem;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .nl-examples {
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+            margin-bottom: 1.2rem
+        }
+
+        .nl-btn {
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-family: var(--mono);
+            font-size: .75rem;
+            padding: .5rem .9rem;
+            cursor: pointer;
+            text-align: left;
+            transition: all .2s;
+            line-height: 1.5
+        }
+
+        .nl-btn:hover,
+        .nl-btn.active {
+            background: rgba(0, 212, 255, .06);
+            border-color: var(--accent);
+            color: var(--text-bright)
+        }
+
+        .demo-run-btn {
+            width: 100%;
+            background: var(--accent);
+            color: var(--bg);
+            font-family: var(--mono);
+            font-size: .8rem;
+            font-weight: 700;
+            border: none;
+            padding: .65rem;
+            cursor: pointer;
+            letter-spacing: .05em;
+            transition: all .2s;
+            margin-top: .8rem
+        }
+
+        .demo-run-btn:hover {
+            background: var(--accent3)
+        }
+
+        .demo-run-btn:disabled {
+            opacity: .5;
+            cursor: not-allowed
+        }
+
+        .sql-output {
+            font-size: .78rem;
+            line-height: 2;
+            font-family: var(--mono);
+            min-height: 80px
+        }
+
+        .sql-kw {
+            color: var(--accent)
+        }
+
+        .sql-tbl {
+            color: var(--accent3)
+        }
+
+        .sql-str {
+            color: var(--warn)
+        }
+
+        .sql-num {
+            color: #63b3ff
+        }
+
+        .sql-fn {
+            color: var(--purple)
+        }
+
+        .fix-label {
+            font-size: .6rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--purple);
+            margin-bottom: .4rem
+        }
+
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .72rem;
+            margin-top: .8rem
+        }
+
+        .result-table th {
+            color: var(--text-dim);
+            font-weight: 400;
+            border-bottom: 1px solid var(--border);
+            padding: .25rem .6rem .25rem 0;
+            text-align: left
+        }
+
+        .result-table td {
+            color: var(--text);
+            padding: .2rem .6rem .2rem 0;
+            border-bottom: 1px solid rgba(26, 37, 53, .5)
+        }
+
+        .result-table td.n {
+            color: #63b3ff
+        }
+
+        .result-table td.ok {
+            color: var(--accent3)
+        }
+
+        .result-table td.warn {
+            color: var(--warn)
+        }
+
+        .result-meta {
+            font-size: .68rem;
+            color: var(--text-dim);
+            margin-top: .6rem
+        }
+
+        .processing {
+            display: none;
+            align-items: center;
+            gap: .6rem;
+            color: var(--text-dim);
+            font-size: .75rem;
+            margin-bottom: .8rem
+        }
+
+        .processing.show {
+            display: flex
+        }
+
+        .spin {
+            width: 14px;
+            height: 14px;
+            border: 2px solid var(--border2);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin .7s linear infinite;
+            flex-shrink: 0
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        /* ── ARCH ── */
+        .arch-section {
+            padding: 6rem 5vw;
+            background: var(--bg2);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border)
+        }
+
+        .arch-diagram {
+            max-width: 800px;
+            margin: 3.5rem auto 0;
+            position: relative
+        }
+
+        .arch-svg {
+            width: 100%;
+            height: auto;
+            display: block
+        }
+
+        /* ── FEATURES ── */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
             gap: 1px;
             background: var(--border);
             border: 1px solid var(--border);
-            margin-top: 4rem;
+            margin-top: 3.5rem
         }
 
         .feature-card {
             background: var(--bg);
-            padding: 2rem;
-            transition: background 0.25s;
+            padding: 1.8rem;
+            transition: background .25s;
             position: relative;
-            overflow: hidden;
+            overflow: hidden
         }
 
         .feature-card::before {
@@ -618,166 +1002,331 @@
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--accent), transparent);
             opacity: 0;
-            transition: opacity 0.3s;
+            transition: opacity .3s
         }
 
         .feature-card:hover {
-            background: var(--bg2);
+            background: var(--bg2)
         }
 
         .feature-card:hover::before {
-            opacity: 1;
+            opacity: 1
         }
 
-        .feature-icon {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            display: block;
+        .f-icon {
+            font-size: 1.4rem;
+            margin-bottom: .9rem;
+            display: block
         }
 
-        .feature-title {
-            font-family: var(--font-sans);
-            font-size: 1rem;
+        .f-title {
+            font-family: var(--sans);
+            font-size: .95rem;
             font-weight: 700;
             color: var(--text-bright);
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.01em;
+            margin-bottom: .45rem
         }
 
-        .feature-desc {
-            font-size: 0.78rem;
+        .f-desc {
+            font-family: var(--sans);
+            font-size: .77rem;
             color: var(--text-dim);
-            line-height: 1.7;
+            line-height: 1.7
         }
 
-        /* ── COMMANDS TABLE ── */
+        /* ── TECH STACK ── */
+        .tech-section {
+            padding: 6rem 5vw;
+            background: var(--bg3);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border)
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 3rem
+        }
+
+        .tech-card {
+            border: 1px solid var(--border2);
+            padding: 1.4rem;
+            background: var(--bg2);
+            transition: all .25s;
+            position: relative;
+            overflow: hidden
+        }
+
+        .tech-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 24px rgba(0, 212, 255, .06)
+        }
+
+        .tech-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--tc-color, var(--accent))
+        }
+
+        .tech-card.mysql {
+            --tc-color: #f29111
+        }
+
+        .tech-card.postgres {
+            --tc-color: #336791
+        }
+
+        .tech-card.mongo {
+            --tc-color: #4caf50
+        }
+
+        .tech-card.python {
+            --tc-color: #3572a5
+        }
+
+        .tech-card.tabulate {
+            --tc-color: var(--accent)
+        }
+
+        .tech-card.prompt {
+            --tc-color: var(--purple)
+        }
+
+        .tech-card.pygments {
+            --tc-color: var(--pink)
+        }
+
+        .tech-name {
+            font-family: var(--display);
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--text-bright);
+            margin-bottom: .3rem
+        }
+
+        .tech-role {
+            font-size: .68rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: .5rem
+        }
+
+        .tech-version {
+            font-size: .72rem;
+            color: var(--accent3)
+        }
+
+        /* ── BENCHMARK ── */
+        .bench-section {
+            padding: 6rem 5vw;
+            background: var(--bg)
+        }
+
+        .bench-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3.5rem
+        }
+
+        .bench-card {
+            border: 1px solid var(--border2);
+            padding: 1.8rem;
+            background: var(--bg2);
+            position: relative;
+            overflow: hidden
+        }
+
+        .bench-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: var(--fill, 70%);
+            height: 3px;
+            background: var(--bc, var(--accent));
+            transition: width 1s ease
+        }
+
+        .bench-number {
+            font-family: var(--display);
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--text-bright);
+            line-height: 1;
+            margin-bottom: .3rem
+        }
+
+        .bench-number span {
+            color: var(--bc, var(--accent));
+            font-size: 1.8rem
+        }
+
+        .bench-label {
+            font-family: var(--sans);
+            font-size: .82rem;
+            font-weight: 600;
+            color: var(--text-bright);
+            margin-bottom: .3rem
+        }
+
+        .bench-desc {
+            font-family: var(--sans);
+            font-size: .75rem;
+            color: var(--text-dim);
+            line-height: 1.6
+        }
+
+        .bench-bar-bg {
+            height: 4px;
+            background: var(--border2);
+            margin-top: 1rem;
+            overflow: hidden
+        }
+
+        .bench-bar {
+            height: 100%;
+            background: var(--bc, var(--accent));
+            width: 0;
+            transition: width 1.2s .4s ease;
+            border-radius: 0
+        }
+
+        /* ── COMMANDS ── */
         .commands-section {
             padding: 6rem 5vw;
             background: var(--bg2);
             border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--border)
         }
 
         .cmd-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 3rem
         }
 
         .cmd-group-title {
-            font-size: 0.68rem;
-            letter-spacing: 0.15em;
+            font-size: .62rem;
+            letter-spacing: .18em;
             text-transform: uppercase;
             color: var(--accent);
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border);
+            margin-bottom: .9rem;
+            padding-bottom: .5rem;
+            border-bottom: 1px solid var(--border)
         }
 
         .cmd-row {
             display: flex;
             gap: 1rem;
             align-items: flex-start;
-            margin-bottom: 0.7rem;
-            font-size: 0.8rem;
+            margin-bottom: .65rem;
+            font-size: .78rem
         }
 
         .cmd-name {
             color: var(--accent3);
             white-space: nowrap;
             min-width: 160px;
-            flex-shrink: 0;
+            flex-shrink: 0
         }
 
         .cmd-desc {
             color: var(--text-dim);
             line-height: 1.5;
+            font-family: var(--sans);
+            font-size: .76rem
         }
 
-        /* ── INSTALL SECTION ── */
+        /* ── INSTALL ── */
         .install-section {
-            padding: 6rem 5vw;
+            padding: 6rem 5vw
         }
 
         .install-tabs {
             display: flex;
             gap: 0;
             margin-top: 3rem;
-            margin-bottom: 0;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--border)
         }
 
         .tab-btn {
             background: transparent;
             border: none;
             color: var(--text-dim);
-            font-family: var(--font-mono);
-            font-size: 0.78rem;
-            padding: 0.6rem 1.2rem;
+            font-family: var(--mono);
+            font-size: .75rem;
+            padding: .6rem 1.2rem;
             cursor: pointer;
-            letter-spacing: 0.05em;
+            letter-spacing: .05em;
             border-bottom: 2px solid transparent;
             margin-bottom: -1px;
-            transition: all 0.2s;
+            transition: all .2s
         }
 
         .tab-btn.active {
             color: var(--accent);
-            border-bottom-color: var(--accent);
+            border-bottom-color: var(--accent)
         }
 
         .tab-btn:hover:not(.active) {
-            color: var(--text);
+            color: var(--text)
         }
 
         .tab-panel {
             display: none;
             background: var(--bg2);
             border: 1px solid var(--border);
-            border-top: none;
+            border-top: none
         }
 
         .tab-panel.active {
-            display: block;
+            display: block
         }
 
         .code-block {
-            padding: 1.5rem;
-            font-size: 0.82rem;
+            padding: 1.4rem 1.6rem;
+            font-size: .8rem;
             line-height: 2;
-            overflow-x: auto;
+            overflow-x: auto
         }
 
         .code-line {
             display: flex;
-            gap: 1rem;
+            gap: 1rem
         }
 
-        .code-prompt {
+        .cp {
             color: var(--accent3);
             user-select: none;
-            flex-shrink: 0;
+            flex-shrink: 0
         }
 
-        .code-text {
-            color: var(--text);
+        .ct {
+            color: var(--text)
         }
 
-        .code-comment {
-            color: var(--text-dim);
+        .cc {
+            color: var(--text-dim)
         }
 
-        .code-kw {
-            color: var(--accent);
+        .ck {
+            color: var(--accent)
         }
 
-        .code-flag {
-            color: var(--warn);
+        .cf {
+            color: var(--warn)
         }
 
-        .code-val {
-            color: var(--green);
+        .cv {
+            color: var(--accent3)
         }
 
         .copy-btn {
@@ -786,57 +1335,18 @@
             background: transparent;
             border: 1px solid var(--border2);
             color: var(--text-dim);
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            padding: 0.35rem 0.8rem;
+            font-family: var(--mono);
+            font-size: .68rem;
+            padding: .3rem .75rem;
             cursor: pointer;
-            margin: 1rem 1.5rem 1rem auto;
-            transition: all 0.2s;
-            letter-spacing: 0.05em;
+            margin: 1rem 1.4rem 1rem auto;
+            transition: all .2s;
+            letter-spacing: .05em
         }
 
         .copy-btn:hover {
             border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        /* ── OUTPUT MODES ── */
-        .modes-section {
-            padding: 6rem 5vw;
-            background: var(--bg);
-        }
-
-        .mode-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 3rem;
-        }
-
-        .mode-card {
-            border: 1px solid var(--border);
-            padding: 1.2rem 1.4rem;
-            background: var(--bg2);
-            transition: all 0.2s;
-            cursor: default;
-        }
-
-        .mode-card:hover {
-            border-color: var(--accent);
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.06);
-        }
-
-        .mode-name {
-            color: var(--accent3);
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-bottom: 0.35rem;
-        }
-
-        .mode-desc {
-            color: var(--text-dim);
-            font-size: 0.73rem;
-            line-height: 1.5;
+            color: var(--accent)
         }
 
         /* ── SAFETY ── */
@@ -844,14 +1354,14 @@
             padding: 6rem 5vw;
             background: var(--bg2);
             border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--border)
         }
 
         .safety-cards {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 3rem
         }
 
         .safety-card {
@@ -859,7 +1369,7 @@
             padding: 2rem;
             background: var(--bg3);
             position: relative;
-            overflow: hidden;
+            overflow: hidden
         }
 
         .safety-card::after {
@@ -868,131 +1378,249 @@
             bottom: 0;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 3px
         }
 
         .safety-card.safe::after {
-            background: var(--warn);
+            background: var(--warn)
         }
 
         .safety-card.lock::after {
-            background: var(--error);
+            background: var(--error)
         }
 
-        .safety-card-label {
-            font-size: 0.65rem;
-            letter-spacing: 0.18em;
+        .sc-label {
+            font-size: .62rem;
+            letter-spacing: .18em;
             text-transform: uppercase;
-            margin-bottom: 0.8rem;
+            margin-bottom: .8rem
         }
 
-        .safe .safety-card-label {
-            color: var(--warn);
+        .safe .sc-label {
+            color: var(--warn)
         }
 
-        .lock .safety-card-label {
-            color: var(--error);
+        .lock .sc-label {
+            color: var(--error)
         }
 
         .safety-card h3 {
-            font-family: var(--font-sans);
+            font-family: var(--display);
             font-size: 1.2rem;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--text-bright);
-            margin-bottom: 0.6rem;
+            margin-bottom: .6rem
         }
 
         .safety-card p {
-            font-size: 0.8rem;
+            font-family: var(--sans);
+            font-size: .8rem;
             color: var(--text-dim);
-            line-height: 1.7;
-            margin-bottom: 1rem;
+            line-height: 1.75;
+            margin-bottom: 1rem
         }
 
         .flag-tag {
             display: inline-block;
-            background: rgba(0, 212, 255, 0.07);
-            border: 1px solid rgba(0, 212, 255, 0.2);
+            background: rgba(0, 212, 255, .07);
+            border: 1px solid rgba(0, 212, 255, .2);
             color: var(--accent);
-            font-size: 0.75rem;
-            padding: 0.25rem 0.6rem;
-            font-family: var(--font-mono);
+            font-size: .72rem;
+            padding: .22rem .6rem
+        }
+
+        /* ── MODES ── */
+        .modes-section {
+            padding: 6rem 5vw;
+            background: var(--bg)
+        }
+
+        .mode-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            gap: .9rem;
+            margin-top: 3rem
+        }
+
+        .mode-card {
+            border: 1px solid var(--border);
+            padding: 1.1rem 1.3rem;
+            background: var(--bg2);
+            transition: all .2s;
+            cursor: default
+        }
+
+        .mode-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(0, 212, 255, .05)
+        }
+
+        .mode-name {
+            color: var(--accent3);
+            font-size: .83rem;
+            font-weight: 700;
+            margin-bottom: .3rem
+        }
+
+        .mode-desc {
+            font-family: var(--sans);
+            color: var(--text-dim);
+            font-size: .72rem;
+            line-height: 1.5
         }
 
         /* ── CONTRIBUTE ── */
         .contribute-section {
             padding: 6rem 5vw;
+            background: var(--bg3);
+            border-top: 1px solid var(--border)
         }
 
         .contribute-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 1.3rem;
+            margin-top: 3rem
         }
 
         .contribute-card {
             border: 1px solid var(--border);
             padding: 1.5rem;
             background: var(--bg2);
-            transition: all 0.2s;
+            transition: all .2s
         }
 
         .contribute-card:hover {
             border-color: var(--accent3);
-            transform: translateY(-2px);
+            transform: translateY(-2px)
         }
 
-        .contribute-card .icon {
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-            display: block;
+        .contribute-card .ic {
+            font-size: 1.3rem;
+            margin-bottom: .7rem;
+            display: block
         }
 
         .contribute-card h4 {
-            font-family: var(--font-sans);
-            font-size: 0.95rem;
+            font-family: var(--sans);
+            font-size: .9rem;
             font-weight: 700;
             color: var(--text-bright);
-            margin-bottom: 0.4rem;
+            margin-bottom: .35rem
         }
 
         .contribute-card p {
-            font-size: 0.76rem;
+            font-family: var(--sans);
+            font-size: .75rem;
             color: var(--text-dim);
-            line-height: 1.6;
+            line-height: 1.6
         }
 
-        /* ── CTA FOOTER ── */
+        /* ── COFFEE ── */
+        .coffee-section {
+            padding: 5rem 5vw;
+            background: linear-gradient(135deg, rgba(255, 193, 7, .04) 0%, transparent 60%), var(--bg2);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            text-align: center
+        }
+
+        .coffee-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            animation: float 3s ease-in-out infinite
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-8px)
+            }
+        }
+
+        .coffee-title {
+            font-family: var(--display);
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 800;
+            color: var(--text-bright);
+            letter-spacing: -.03em;
+            margin-bottom: .8rem
+        }
+
+        .coffee-desc {
+            font-family: var(--sans);
+            color: var(--text-dim);
+            font-size: .88rem;
+            max-width: 460px;
+            margin: 0 auto 2rem;
+            line-height: 1.8
+        }
+
+        .coffee-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .7rem;
+            background: #ffc107;
+            color: #1a0a00;
+            padding: .8rem 2rem;
+            font-family: var(--mono);
+            font-size: .88rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: .04em;
+            transition: all .2s;
+            clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px))
+        }
+
+        .coffee-btn:hover {
+            background: #ffe066;
+            transform: translateY(-3px);
+            box-shadow: 0 16px 40px rgba(255, 193, 7, .2)
+        }
+
+        .coffee-supporters {
+            margin-top: 2.5rem;
+            font-size: .72rem;
+            color: var(--text-dim);
+            font-family: var(--sans)
+        }
+
+        /* ── CTA ── */
         .cta-section {
             padding: 8rem 5vw;
             text-align: center;
             border-top: 1px solid var(--border);
-            background:
-                radial-gradient(ellipse 60% 50% at 50% 100%, rgba(0, 212, 255, 0.07) 0%, transparent 70%);
+            background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(0, 212, 255, .06) 0%, transparent 70%)
         }
 
         .cta-section h2 {
-            font-family: var(--font-sans);
-            font-size: clamp(2rem, 5vw, 4rem);
+            font-family: var(--display);
+            font-size: clamp(2rem, 4.5vw, 3.8rem);
             font-weight: 800;
-            letter-spacing: -0.04em;
+            letter-spacing: -.04em;
             color: var(--text-bright);
-            margin-bottom: 1rem;
+            margin-bottom: 1rem
         }
 
         .cta-section p {
+            font-family: var(--sans);
             color: var(--text-dim);
-            font-size: 0.9rem;
+            font-size: .9rem;
             max-width: 460px;
-            margin: 0 auto 2.5rem;
+            margin: 0 auto 2.5rem
         }
 
         .cta-buttons {
             display: flex;
             gap: 1rem;
             justify-content: center;
-            flex-wrap: wrap;
+            flex-wrap: wrap
         }
 
         /* ── FOOTER ── */
@@ -1004,291 +1632,228 @@
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 1rem;
-            background: var(--bg2);
+            background: var(--bg2)
         }
 
         .footer-brand {
-            font-family: var(--font-sans);
+            font-family: var(--display);
             font-weight: 800;
             color: var(--accent);
-            font-size: 1rem;
+            font-size: 1rem
         }
 
         .footer-brand span {
             color: var(--text-dim);
             font-weight: 400;
-            font-size: 0.8rem;
+            font-size: .78rem
         }
 
         .footer-links {
             display: flex;
             gap: 1.5rem;
             list-style: none;
-            flex-wrap: wrap;
+            flex-wrap: wrap
         }
 
         .footer-links a {
             color: var(--text-dim);
             text-decoration: none;
-            font-size: 0.75rem;
-            transition: color 0.2s;
+            font-size: .73rem;
+            transition: color .2s
         }
 
         .footer-links a:hover {
-            color: var(--accent);
+            color: var(--accent)
         }
 
         .footer-copy {
-            font-size: 0.72rem;
+            font-size: .7rem;
             color: var(--text-dim);
-        }
-
-        /* ── BADGES ── */
-        .badges {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
-
-        .badge {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border2);
-            color: var(--text-dim);
-            font-size: 0.68rem;
-            padding: 0.2rem 0.6rem;
-            letter-spacing: 0.06em;
-        }
-
-        .badge.blue {
-            border-color: rgba(0, 212, 255, 0.3);
-            color: var(--accent);
-        }
-
-        .badge.green {
-            border-color: rgba(0, 230, 118, 0.3);
-            color: var(--green);
-        }
-
-        .badge.amber {
-            border-color: rgba(255, 170, 0, 0.3);
-            color: var(--warn);
-        }
-
-        /* ── ANIMATIONS ── */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeLeft {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: none;
+            font-family: var(--sans)
         }
 
         /* ── DIVIDER ── */
         .divider {
             height: 1px;
             background: linear-gradient(90deg, transparent, var(--border2), transparent);
-            margin: 0 5vw;
+            margin: 0 5vw
+        }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(22px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @keyframes fadeLeft {
+            from {
+                opacity: 0;
+                transform: translateX(32px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0)
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(26px);
+            transition: opacity .65s ease, transform .65s ease
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: none
         }
 
         /* ── RESPONSIVE ── */
-        @media (max-width: 768px) {
+        @media(max-width:768px) {
             .nav-links {
-                display: none;
+                display: none
             }
 
             .hero {
                 padding-top: 5rem;
-                min-height: auto;
+                min-height: auto
             }
 
-            .hero-meta {
-                gap: 1.5rem;
+            .stats-strip {
+                flex-wrap: wrap
+            }
+
+            .stat {
+                flex: 1;
+                min-width: 140px;
+                padding: .5rem 1rem
             }
         }
     </style>
 </head>
 
 <body>
-
     <div class="grid-bg"></div>
 
     <!-- NAV -->
     <nav>
         <a href="#" class="nav-logo">Ter<span>SQL</span></a>
         <ul class="nav-links">
+            <li><a href="#for-who">Who It's For</a></li>
+            <li><a href="#demo">Demo</a></li>
             <li><a href="#features">Features</a></li>
-            <li><a href="#commands">Commands</a></li>
+            <li><a href="#architecture">Architecture</a></li>
             <li><a href="#install">Install</a></li>
-            <li><a href="#safety">Safety</a></li>
             <li><a href="#contribute">Contribute</a></li>
         </ul>
-        <a href="https://github.com/developersayandutta/TerSQL" class="nav-cta" target="_blank">GitHub →</a>
+        <div class="nav-right">
+            <a href="https://buymeacoffee.com/s_a_y_a_n" class="nav-coffee" target="_blank">☕ Coffee</a>
+            <a href="https://github.com/developersayandutta/TerSQL" class="nav-cta" target="_blank">GitHub →</a>
+        </div>
     </nav>
 
     <!-- HERO -->
     <section class="hero">
-        <div class="hero-badge">
-            <span class="badge-dot"></span>
-            v0.0.2 beta · MIT License · Modular Plugins
+        <div class="hero-glow"></div>
+        <div class="hero-glow2"></div>
+
+        <div class="hero-eyebrow">
+            <span class="pulse-dot"></span>
+            v0.0.2 beta · MIT License · Multi-Database · No Coding Required
         </div>
 
-        <div class="badges">
-            <span class="badge blue">Python 3.10+</span>
+        <div class="badge-row">
+            <span class="badge cyan">Python 3.10+</span>
             <span class="badge green">Open Source</span>
             <span class="badge amber">Beta</span>
-            <span class="badge">MySQL / PostgreSQL / MongoDB</span>
+            <span class="badge purple">Research + Product</span>
+            <span class="badge">MySQL · PostgreSQL · MongoDB</span>
         </div>
 
-        <h1>Write SQL without<br>breaking your<br><span class="accent-word">brain</span></h1>
+        <h1 class="hero-headline">
+            TerSQL for<br>
+            <span class="stroke">every</span>one.<br>
+            <span class="stroke2">No limits.</span>
+        </h1>
 
-        <p class="hero-subtitle">
-            TerSQL helps beginners write SQL without memorizing syntax.
-            It auto-corrects mistakes, suggests queries, and explains errors —
-            so you learn while doing, not by failing.
+        <p class="hero-sub">
+            TerSQL is the SQL terminal built for humans — not just developers.
+            <strong>You don't need prior coding knowledge.</strong> Type naturally, get auto-corrections,
+            smart completions, and clear results across MySQL, PostgreSQL, and MongoDB.
         </p>
 
         <div class="hero-actions">
-            <a href="#install" class="btn-primary">
-                ⬇ Get Started
-            </a>
-            <a href="https://github.com/developersayandutta/TerSQL" class="btn-ghost" target="_blank">
-                ★ Star on GitHub
-            </a>
+            <a href="#install" class="btn-primary">⬇ Get Started Free</a>
+            <a href="#demo" class="btn-ghost">▶ See It In Action</a>
+            <a href="https://github.com/developersayandutta/TerSQL" class="btn-ghost" target="_blank">★ Star on
+                GitHub</a>
         </div>
 
         <div class="hero-meta">
-            <div class="meta-item">
-                <span class="meta-label">Version</span>
-                <span class="meta-value">0.0.2 beta</span>
+            <div class="meta-item"><span class="meta-label">Version</span><span class="meta-value">0.0.2 beta</span>
             </div>
-            <div class="meta-item">
-                <span class="meta-label">License</span>
-                <span class="meta-value"><span class="green">MIT</span></span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-label">Python</span>
-                <span class="meta-value">3.10+</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-label">Dependencies</span>
-                <span class="meta-value">5 core packages</span>
-            </div>
+            <div class="meta-item"><span class="meta-label">License</span><span class="meta-value"><span class="g">MIT
+                        Open Source</span></span></div>
+            <div class="meta-item"><span class="meta-label">Databases</span><span class="meta-value">MySQL · Postgres ·
+                    MongoDB</span></div>
+            <div class="meta-item"><span class="meta-label">Prior Coding Needed</span><span class="meta-value"><span
+                        class="g">None ✓</span></span></div>
         </div>
 
-        <!-- TERMINAL MOCK -->
-        <div class="terminal-wrap">
+        <!-- FLOATING TERMINAL -->
+        <div class="terminal-float">
             <div class="terminal">
-                <div class="terminal-bar">
-                    <span class="t-dot red"></span>
-                    <span class="t-dot amber"></span>
-                    <span class="t-dot green"></span>
-                    <span class="t-title">TerSQL — localhost:3306</span>
+                <div class="t-bar">
+                    <span class="dot r"></span><span class="dot a"></span><span class="dot g"></span>
+                    <span class="t-title-bar">TerSQL — localhost:3306</span>
                 </div>
-                <div class="terminal-body">
-                    <span class="t-line"><span class="t-dim">TerSQL v0.0.2 (beta)</span></span>
-                    <span class="t-line"><span class="t-ok">[connected]</span> <span class="t-dim">localhost:3306
-                            server=8.0.35 user=root</span></span>
+                <div class="t-body">
+                    <span class="t-line"><span class="t-dim">TerSQL v0.0.2 · Type .help for commands</span></span>
+                    <span class="t-line"><span class="t-ok">[connected]</span> <span class="t-dim">mysql:localhost ·
+                            user=root</span></span>
                     <span class="t-line">&nbsp;</span>
-                    <span class="t-line"><span class="t-prompt">mysql&gt;</span> <span class="t-kw">SELECT</span> <span
-                            class="t-dim">id, name, status</span> <span class="t-kw">FROM</span> <span
-                            class="t-dim">orders</span> <span class="t-kw">LIMIT</span> <span
-                            class="t-num">4</span><span class="t-dim">;</span></span>
+                    <span class="t-line"><span class="t-prompt">mysql&gt;</span> <span class="t-dim">show top 5
+                            users</span></span>
+                    <span class="t-line"><span class="t-fix">[auto-fix]</span> <span class="t-dim">→ SELECT * FROM users
+                            LIMIT 5;</span></span>
                     <span class="t-line">&nbsp;</span>
-                    <table class="t-table">
+                    <table class="t-tbl">
                         <tr>
                             <th>id</th>
                             <th>name</th>
-                            <th>status</th>
+                            <th>email</th>
+                            <th>role</th>
                         </tr>
                         <tr>
-                            <td class="num">1</td>
+                            <td class="n">1</td>
                             <td>Alice</td>
-                            <td><span class="t-ok">active</span></td>
+                            <td>alice@dev.io</td>
+                            <td><span class="t-ok">admin</span></td>
                         </tr>
                         <tr>
-                            <td class="num">2</td>
+                            <td class="n">2</td>
                             <td>Bob</td>
-                            <td><span class="t-ok">active</span></td>
+                            <td>bob@dev.io</td>
+                            <td><span class="t-dim">user</span></td>
                         </tr>
                         <tr>
-                            <td class="num">3</td>
+                            <td class="n">3</td>
                             <td>Carol</td>
-                            <td><span class="t-dim">pending</span></td>
-                        </tr>
-                        <tr>
-                            <td class="num">4</td>
-                            <td>Dave</td>
-                            <td><span class="t-err">closed</span></td>
+                            <td>carol@dev.io</td>
+                            <td><span class="t-dim">user</span></td>
                         </tr>
                     </table>
                     <span class="t-line">&nbsp;</span>
-                    <span class="t-line"><span class="t-dim">4 row(s) returned (0.0021 sec)</span></span>
-                    <span class="t-line">&nbsp;</span>
-                    <span class="t-line"><span class="t-prompt">mysql&gt;</span> <span class="t-dim">.bookmark</span>
-                        <span class="t-str">active</span> <span class="t-kw">SELECT</span> <span class="t-dim">* FROM
-                            orders WHERE status=</span><span class="t-str">'active'</span><span
-                            class="t-dim">;</span></span>
-                    <span class="t-line"><span class="t-ok">[ok]</span> <span class="t-dim">Bookmark 'active'
-                            saved.</span></span>
+                    <span class="t-line"><span class="t-dim">3 row(s) · 0.0017 sec</span></span>
                     <span class="t-line">&nbsp;</span>
                     <span class="t-line"><span class="t-prompt">mysql&gt;</span> <span class="cursor"></span></span>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="section">
-        <p class="section-tag reveal">Why TerSQL?</p>
-        <h2 class="section-title reveal">SQL is frustrating for beginners</h2>
-
-        <div class="features-grid">
-            <div class="feature-card reveal">
-                <div class="feature-title">❌ Syntax Errors Everywhere</div>
-                <div class="feature-desc">One missing keyword breaks everything. Errors don’t explain what went wrong.
-                </div>
-            </div>
-
-            <div class="feature-card reveal">
-                <div class="feature-title">❌ Hard to Remember Queries</div>
-                <div class="feature-desc">SELECT, WHERE, JOIN... beginners constantly forget syntax.</div>
-            </div>
-
-            <div class="feature-card reveal">
-                <div class="feature-title">❌ No Guidance</div>
-                <div class="feature-desc">Traditional terminals don’t help you learn — they just fail.</div>
-            </div>
-
-            <div class="feature-card reveal">
-                <div class="feature-title">✅ TerSQL Fixes This</div>
-                <div class="feature-desc">
-                    Auto-correction, smart suggestions, and beginner-friendly feedback built-in.
                 </div>
             </div>
         </div>
@@ -1296,143 +1861,428 @@
 
     <!-- STATS -->
     <div class="stats-strip">
-        <div class="stat"><span class="stat-n">11</span><span class="stat-l">output formats</span></div>
-        <div class="stat"><span class="stat-n">4</span><span class="stat-l">output modes</span></div>
-        <div class="stat"><span class="stat-n">40+</span><span class="stat-l">dot commands</span></div>
-        <div class="stat"><span class="stat-n">500</span><span class="stat-l">query history buffer</span></div>
         <div class="stat"><span class="stat-n">3</span><span class="stat-l">Database engines</span></div>
+        <div class="stat"><span class="stat-n">40+</span><span class="stat-l">Dot commands</span></div>
+        <div class="stat"><span class="stat-n">11</span><span class="stat-l">Output formats</span></div>
+        <div class="stat"><span class="stat-n">0</span><span class="stat-l">Coding knowledge needed</span></div>
+        <div class="stat"><span class="stat-n">MIT</span><span class="stat-l">Free forever</span></div>
     </div>
+
+    <!-- WHO IT'S FOR -->
+    <section class="usecase-section" id="for-who">
+        <p class="sec-tag reveal">Who It's For</p>
+        <h2 class="sec-title reveal">Built for everyone.<br>Designed for beginners.</h2>
+        <p class="sec-body reveal" style="font-family:var(--sans)">Whether you've never touched a terminal or you're an
+            experienced DBA — TerSQL meets you where you are. Zero prior coding knowledge required to get started.</p>
+
+        <div class="usecase-grid">
+            <div class="usecase-card s1 reveal">
+                <span class="uc-icon">🎓</span>
+                <div class="uc-label">Beginners & Students</div>
+                <div class="uc-title">Learn SQL by doing, not by failing</div>
+                <div class="uc-desc">Never written a SQL query before? That's exactly who TerSQL was built for. Type
+                    plain English, see the corrected SQL, understand what happened — and learn naturally without
+                    memorising syntax.</div>
+                <div class="uc-tag">✓ Zero coding knowledge needed</div>
+            </div>
+            <div class="usecase-card s2 reveal">
+                <span class="uc-icon">⚙️</span>
+                <div class="uc-label">Developers & Engineers</div>
+                <div class="uc-title">A smarter terminal that keeps up with you</div>
+                <div class="uc-desc">Smart autocompletion, live schema awareness, query bookmarks, profiling, and
+                    multi-format output. Everything the default mysql CLI is missing, packed into a single Python
+                    script.</div>
+                <div class="uc-tag"
+                    style="background:rgba(167,139,250,.07);border-color:rgba(167,139,250,.2);color:var(--purple)">✓
+                    Production-ready features</div>
+            </div>
+            <div class="usecase-card s3 reveal">
+                <span class="uc-icon">📊</span>
+                <div class="uc-label">Data Analysts</div>
+                <div class="uc-title">Query, export, and analyse without switching tools</div>
+                <div class="uc-desc">Export results to JSON or CSV in one command. Switch between grid, markdown, and
+                    vertical views live. Connect to MySQL, PostgreSQL, or MongoDB with the same interface.</div>
+                <div class="uc-tag"
+                    style="background:rgba(255,170,0,.07);border-color:rgba(255,170,0,.2);color:var(--warn)">✓
+                    Multi-database unified interface</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEMO -->
+    <section class="demo-section" id="demo">
+        <p class="sec-tag reveal" style="text-align:center">Interactive Demo</p>
+        <h2 class="sec-title reveal" style="text-align:center">See TerSQL in action</h2>
+        <p class="sec-body reveal" style="text-align:center;margin:0 auto">Pick a natural-language input, hit Run, and
+            watch TerSQL auto-correct and execute it.</p>
+
+        <div class="demo-wrap reveal">
+            <div class="demo-bar">
+                <span class="dot r"></span><span class="dot a"></span><span class="dot g"></span>
+                <span class="demo-bar-title">TerSQL Interactive Demo — mysql:localhost</span>
+            </div>
+            <div class="demo-inner">
+                <div class="demo-left">
+                    <div class="demo-panel-title">Natural Language Input</div>
+                    <div class="nl-examples">
+                        <button class="nl-btn active" data-id="0">show me all users</button>
+                        <button class="nl-btn" data-id="1">count orders by status</button>
+                        <button class="nl-btn" data-id="2">select * users where active</button>
+                        <button class="nl-btn" data-id="3">desc products</button>
+                        <button class="nl-btn" data-id="4">show top 3 revenue customers</button>
+                    </div>
+                    <button class="demo-run-btn" id="runBtn">▶ Run Query</button>
+                </div>
+                <div class="demo-right">
+                    <div class="demo-panel-title">Output</div>
+                    <div class="processing" id="processing">
+                        <div class="spin"></div>
+                        <span>Auto-correcting & executing…</span>
+                    </div>
+                    <div id="sqlOut" class="sql-output"></div>
+                    <div id="resultOut"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ARCHITECTURE -->
+    <section class="arch-section" id="architecture">
+        <p class="sec-tag reveal" style="text-align:center">How It Works</p>
+        <h2 class="sec-title reveal" style="text-align:center">System Architecture</h2>
+        <p class="sec-body reveal" style="text-align:center;margin:0 auto">TerSQL is a modular pipeline. Each layer is
+            cleanly separated — making it easy to extend with new database plugins or NLP rules.</p>
+
+        <div class="arch-diagram reveal">
+            <svg class="arch-svg" viewBox="0 0 780 420" xmlns="http://www.w3.org/2000/svg"
+                font-family="'JetBrains Mono',monospace">
+                <defs>
+                    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                        <path d="M0,0 L0,6 L8,3 z" fill="#1a2535" />
+                    </marker>
+                    <marker id="arrow-cyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                        <path d="M0,0 L0,6 L8,3 z" fill="#00d4ff" />
+                    </marker>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+                        <feMerge>
+                            <feMergeNode in="coloredBlur" />
+                            <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                    </filter>
+                </defs>
+
+                <!-- Background boxes -->
+                <!-- User Input -->
+                <rect x="20" y="170" width="130" height="80" fill="#0c1219" stroke="#1a2535" stroke-width="1" />
+                <rect x="20" y="170" width="130" height="3" fill="#00d4ff" />
+                <text x="85" y="205" fill="#e8f4ff" font-size="11" font-weight="700" text-anchor="middle">User
+                    Input</text>
+                <text x="85" y="222" fill="#4a6a85" font-size="9" text-anchor="middle">Natural language</text>
+                <text x="85" y="235" fill="#4a6a85" font-size="9" text-anchor="middle">or raw SQL</text>
+
+                <!-- Arrow 1 -->
+                <line x1="150" y1="210" x2="188" y2="210" stroke="#00d4ff" stroke-width="1.5"
+                    marker-end="url(#arrow-cyan)" />
+
+                <!-- NLP Engine -->
+                <rect x="190" y="155" width="140" height="110" fill="#0c1219" stroke="#223040" stroke-width="1" />
+                <rect x="190" y="155" width="140" height="3" fill="#a78bfa" />
+                <text x="260" y="185" fill="#e8f4ff" font-size="11" font-weight="700" text-anchor="middle">NLP
+                    Engine</text>
+                <text x="260" y="202" fill="#4a6a85" font-size="9" text-anchor="middle">NLP.py</text>
+                <text x="260" y="218" fill="#4a6a85" font-size="9" text-anchor="middle">Regex rule-engine</text>
+                <text x="260" y="234" fill="#00ff9d" font-size="9" text-anchor="middle">auto-corrections</text>
+                <text x="260" y="249" fill="#4a6a85" font-size="9" text-anchor="middle">intent parsing</text>
+
+                <!-- Arrow 2 -->
+                <line x1="330" y1="210" x2="368" y2="210" stroke="#00d4ff" stroke-width="1.5"
+                    marker-end="url(#arrow-cyan)" />
+
+                <!-- Core -->
+                <rect x="370" y="155" width="140" height="110" fill="#0c1219" stroke="#223040" stroke-width="1" />
+                <rect x="370" y="155" width="140" height="3" fill="#00d4ff" />
+                <text x="440" y="185" fill="#e8f4ff" font-size="11" font-weight="700" text-anchor="middle">Core
+                    Engine</text>
+                <text x="440" y="202" fill="#4a6a85" font-size="9" text-anchor="middle">Core.py</text>
+                <text x="440" y="218" fill="#4a6a85" font-size="9" text-anchor="middle">Safety guards</text>
+                <text x="440" y="234" fill="#4a6a85" font-size="9" text-anchor="middle">Query validation</text>
+                <text x="440" y="249" fill="#4a6a85" font-size="9" text-anchor="middle">Output formatting</text>
+
+                <!-- Arrow 3 -->
+                <line x1="510" y1="210" x2="548" y2="210" stroke="#00d4ff" stroke-width="1.5"
+                    marker-end="url(#arrow-cyan)" />
+
+                <!-- Plugin Router -->
+                <rect x="550" y="155" width="140" height="110" fill="#0c1219" stroke="#223040" stroke-width="1" />
+                <rect x="550" y="155" width="140" height="3" fill="#ffaa00" />
+                <text x="620" y="185" fill="#e8f4ff" font-size="11" font-weight="700" text-anchor="middle">Plugin
+                    Router</text>
+                <text x="620" y="202" fill="#4a6a85" font-size="9" text-anchor="middle">plugins/base.py</text>
+                <text x="620" y="218" fill="#4a6a85" font-size="9" text-anchor="middle">DB driver selector</text>
+                <text x="620" y="234" fill="#4a6a85" font-size="9" text-anchor="middle">Extensible API</text>
+
+                <!-- DB nodes below -->
+                <!-- MySQL -->
+                <rect x="490" y="320" width="100" height="60" fill="#0c1219" stroke="#1a2535" stroke-width="1" />
+                <rect x="490" y="320" width="100" height="2" fill="#f29111" />
+                <text x="540" y="346" fill="#e8f4ff" font-size="10" font-weight="700" text-anchor="middle">MySQL</text>
+                <text x="540" y="362" fill="#4a6a85" font-size="8" text-anchor="middle">mysql-connector</text>
+
+                <!-- Postgres -->
+                <rect x="610" y="320" width="100" height="60" fill="#0c1219" stroke="#1a2535" stroke-width="1" />
+                <rect x="610" y="320" width="100" height="2" fill="#336791" />
+                <text x="660" y="346" fill="#e8f4ff" font-size="10" font-weight="700"
+                    text-anchor="middle">PostgreSQL</text>
+                <text x="660" y="362" fill="#4a6a85" font-size="8" text-anchor="middle">psycopg2</text>
+
+                <!-- MongoDB -->
+                <rect x="370" y="320" width="100" height="60" fill="#0c1219" stroke="#1a2535" stroke-width="1" />
+                <rect x="370" y="320" width="100" height="2" fill="#4caf50" />
+                <text x="420" y="346" fill="#e8f4ff" font-size="10" font-weight="700"
+                    text-anchor="middle">MongoDB</text>
+                <text x="420" y="362" fill="#4a6a85" font-size="8" text-anchor="middle">pymongo</text>
+
+                <!-- Arrows to DBs -->
+                <line x1="600" y1="265" x2="540" y2="320" stroke="#1a2535" stroke-width="1.2" stroke-dasharray="4,3"
+                    marker-end="url(#arrow)" />
+                <line x1="630" y1="265" x2="660" y2="320" stroke="#1a2535" stroke-width="1.2" stroke-dasharray="4,3"
+                    marker-end="url(#arrow)" />
+                <line x1="590" y1="265" x2="420" y2="320" stroke="#1a2535" stroke-width="1.2" stroke-dasharray="4,3"
+                    marker-end="url(#arrow)" />
+
+                <!-- Result arrow back -->
+                <path d="M 420 380 Q 100 420 85 250" stroke="#00ff9d" stroke-width="1" fill="none"
+                    stroke-dasharray="5,3" marker-end="url(#arrow-cyan)" />
+                <text x="120" y="415" fill="#00ff9d" font-size="8" text-anchor="middle">Result</text>
+
+                <!-- Labels -->
+                <text x="85" y="150" fill="#4a6a85" font-size="8" text-anchor="middle" letter-spacing="1">LAYER 1</text>
+                <text x="260" y="140" fill="#4a6a85" font-size="8" text-anchor="middle" letter-spacing="1">LAYER
+                    2</text>
+                <text x="440" y="140" fill="#4a6a85" font-size="8" text-anchor="middle" letter-spacing="1">LAYER
+                    3</text>
+                <text x="620" y="140" fill="#4a6a85" font-size="8" text-anchor="middle" letter-spacing="1">LAYER
+                    4</text>
+                <text x="490" y="310" fill="#4a6a85" font-size="8" text-anchor="middle" letter-spacing="1">DB
+                    PLUGINS</text>
+
+                <!-- Files labels -->
+                <text x="85" y="163" fill="#00d4ff" font-size="8" text-anchor="middle">main.py</text>
+                <text x="85" y="173" fill="#00d4ff" font-size="8" text-anchor="middle">TerSQL.py</text>
+
+                <!-- Top label -->
+                <text x="390" y="30" fill="#e8f4ff" font-size="13" font-weight="700" text-anchor="middle">TerSQL —
+                    Modular Pipeline Architecture</text>
+                <text x="390" y="50" fill="#4a6a85" font-size="9" text-anchor="middle">Input → NLP Parser → Core Engine
+                    → Plugin Router → Database → Result</text>
+                <line x1="120" y1="62" x2="660" y2="62" stroke="#1a2535" stroke-width="1" />
+            </svg>
+        </div>
+    </section>
 
     <!-- FEATURES -->
     <section class="section" id="features">
-        <p class="section-tag reveal">Capabilities</p>
-        <h2 class="section-title reveal">Everything the default<br>database CLI is missing</h2>
-        <p class="section-body reveal">Built for developers who spend real time in the terminal. Every feature was
-            chosen to reduce friction, not add it.</p>
-
+        <p class="sec-tag reveal">Capabilities</p>
+        <h2 class="sec-title reveal">Everything the default<br>CLI is missing</h2>
+        <p class="sec-body reveal">Built to reduce friction for all experience levels. Every feature was chosen
+            intentionally.</p>
         <div class="features-grid">
-            <div class="feature-card reveal">
-                <span class="feature-icon">🎨</span>
-                <div class="feature-title">Syntax Highlighting</div>
-                <div class="feature-desc">Powered by Pygments. SQL keywords, strings, numbers, and comments all rendered
-                    in colour as you type.</div>
+            <div class="feature-card reveal"><span class="f-icon">🔤</span>
+                <div class="f-title">Plain English Queries</div>
+                <div class="f-desc">Type "show me users" instead of memorising SELECT syntax. TerSQL translates and
+                    shows you what it ran.</div>
             </div>
-            <div class="feature-card reveal">
-                <span class="feature-icon">⚡</span>
-                <div class="feature-title">Smart Autocompletion</div>
-                <div class="feature-desc">Tab-completes SQL keywords alongside live table and column names fetched from
-                    your schema. Dot commands too.</div>
+            <div class="feature-card reveal"><span class="f-icon">🎨</span>
+                <div class="f-title">Syntax Highlighting</div>
+                <div class="f-desc">Powered by Pygments. SQL keywords, strings, numbers and comments rendered in colour
+                    as you type.</div>
             </div>
-            <div class="feature-card reveal">
-                <span class="feature-icon">🔖</span>
-                <div class="feature-title">Query Bookmarks</div>
-                <div class="feature-desc">Save any query under a short name. Bookmarks persist across sessions in
-                    <code>~/.TerSQL_bookmarks.json</code>.
+            <div class="feature-card reveal"><span class="f-icon">⚡</span>
+                <div class="f-title">Smart Autocompletion</div>
+                <div class="f-desc">Tab-completes SQL keywords alongside live table and column names fetched from your
+                    schema.</div>
+            </div>
+            <div class="feature-card reveal"><span class="f-icon">🔖</span>
+                <div class="f-title">Query Bookmarks</div>
+                <div class="f-desc">Save any query under a short name. Bookmarks persist across sessions in
+                    <code>~/.tersql_bookmarks.json</code>.
                 </div>
             </div>
-            <div class="feature-card reveal">
-                <span class="feature-icon">📊</span>
-                <div class="feature-title">Multiple Output Formats</div>
-                <div class="feature-desc">Switch between <code>grid</code>, <code>json</code>, <code>csv</code>,
-                    <code>vertical</code>, <code>markdown</code>, <code>html</code>, <code>latex</code>, and more on the
-                    fly.
+            <div class="feature-card reveal"><span class="f-icon">📊</span>
+                <div class="f-title">11 Output Formats</div>
+                <div class="f-desc">Switch between <code>grid</code>, <code>json</code>, <code>csv</code>,
+                    <code>markdown</code>, <code>html</code>, <code>latex</code>, and more on the fly.
                 </div>
             </div>
-            <div class="feature-card reveal">
-                <span class="feature-icon">🛡</span>
-                <div class="feature-title">Safety Guards</div>
-                <div class="feature-desc">Safe mode blocks dangerous queries. Read-only mode prevents all writes before
-                    they reach the server.</div>
+            <div class="feature-card reveal"><span class="f-icon">🛡</span>
+                <div class="f-title">Safety Guards</div>
+                <div class="f-desc">Safe mode blocks dangerous queries. Read-only mode prevents all writes before they
+                    reach the server.</div>
             </div>
-            <div class="feature-card reveal">
-                <span class="feature-icon">📈</span>
-                <div class="feature-title">Query Profiling</div>
-                <div class="feature-desc">Integrates with MySQL's <code>SHOW PROFILES</code> to show per-stage execution
-                    timing on any query.</div>
-            </div>
-            <div class="feature-card reveal">
-                <span class="feature-icon">🔒</span>
-                <div class="feature-title">SSL / TLS Support</div>
-                <div class="feature-desc">Pass CA, client cert, and client key paths directly on the command line for
-                    encrypted connections.</div>
-            </div>
-            <div class="feature-card reveal">
-                <span class="feature-icon">📜</span>
-                <div class="feature-title">Persistent History</div>
-                <div class="feature-desc">Up/down arrow recall across sessions. <code>Ctrl+R</code> for fuzzy search
-                    through the last 500 queries.</div>
-            </div>
-            <div class="feature-card reveal">
-                <span class="feature-icon">📤</span>
-                <div class="feature-title">Export & Tee</div>
-                <div class="feature-desc">Export any result set to CSV or JSON. Mirror live session output to a file
-                    with <code>.tee</code>.</div>
-            </div>
-            <div class="feature-card reveal">
-                <span class="feature-icon">🧠</span>
-                <div class="feature-title">Smart SQL Correction</div>
-                <div class="feature-desc">
-                    Type imperfect SQL — TerSQL fixes it automatically and shows the correct version.
+            <div class="feature-card reveal"><span class="f-icon">🌐</span>
+                <div class="f-title">Multi-Database</div>
+                <div class="f-desc">One unified interface for MySQL, PostgreSQL, and MongoDB. Switch with a single flag.
                 </div>
             </div>
-            <div class="feature-card reveal">
-                <span class="feature-icon">📂</span>
-                <div class="feature-title">Script Execution</div>
-                <div class="feature-desc">Run any <code>.sql</code> file directly with <code>.source</code>.
-                    Multi-statement files with comments are fully supported.</div>
+            <div class="feature-card reveal"><span class="f-icon">📜</span>
+                <div class="f-title">Persistent History</div>
+                <div class="f-desc">Up/down arrow recall across sessions. <code>Ctrl+R</code> for fuzzy search through
+                    the last 500 queries.</div>
             </div>
-            <div class="feature-card reveal">
-                <span class="feature-icon">🖥</span>
-                <div class="feature-title">Batch Mode</div>
-                <div class="feature-desc">Use <code>-e</code> to run a single query and exit — perfect for shell
-                    scripts, cron jobs, and CI pipelines.</div>
+            <div class="feature-card reveal"><span class="f-icon">📤</span>
+                <div class="f-title">Export & Tee</div>
+                <div class="f-desc">Export any result set to CSV or JSON. Mirror live session output to a log file with
+                    <code>.tee</code>.
+                </div>
+            </div>
+            <div class="feature-card reveal"><span class="f-icon">🔁</span>
+                <div class="f-title">Auto-Correction</div>
+                <div class="f-desc">Common shorthands are silently rewritten before execution. You always see what was
+                    run.</div>
+            </div>
+            <div class="feature-card reveal"><span class="f-icon">📂</span>
+                <div class="f-title">Script Execution</div>
+                <div class="f-desc">Run any <code>.sql</code> file directly with <code>.source</code>. Multi-statement
+                    files fully supported.</div>
+            </div>
+            <div class="feature-card reveal"><span class="f-icon">🖥</span>
+                <div class="f-title">Batch Mode</div>
+                <div class="f-desc">Use <code>-e</code> to run a single query and exit — perfect for shell scripts and
+                    CI pipelines.</div>
             </div>
         </div>
     </section>
 
     <div class="divider"></div>
 
+    <!-- TECH STACK -->
+    <section class="tech-section" id="techstack">
+        <p class="sec-tag reveal">Tech Stack</p>
+        <h2 class="sec-title reveal">Built on reliable,<br>open-source foundations</h2>
+        <p class="sec-body reveal">No proprietary APIs. No LLM dependencies. Every component is open-source and
+            auditable.</p>
+        <div class="tech-grid">
+            <div class="tech-card mysql reveal">
+                <div class="tech-name">MySQL</div>
+                <div class="tech-role">Database Engine</div>
+                <div class="tech-version">mysql-connector-python ≥ 8.0</div>
+            </div>
+            <div class="tech-card postgres reveal">
+                <div class="tech-name">PostgreSQL</div>
+                <div class="tech-role">Database Engine</div>
+                <div class="tech-version">psycopg2-binary ≥ 2.9</div>
+            </div>
+            <div class="tech-card mongo reveal">
+                <div class="tech-name">MongoDB</div>
+                <div class="tech-role">Database Engine</div>
+                <div class="tech-version">pymongo ≥ 4.6</div>
+            </div>
+            <div class="tech-card python reveal">
+                <div class="tech-name">Python</div>
+                <div class="tech-role">Core Runtime</div>
+                <div class="tech-version">3.10+ required</div>
+            </div>
+            <div class="tech-card tabulate reveal">
+                <div class="tech-name">tabulate</div>
+                <div class="tech-role">Table Rendering</div>
+                <div class="tech-version">≥ 0.9 · 11 formats</div>
+            </div>
+            <div class="tech-card prompt reveal">
+                <div class="tech-name">prompt_toolkit</div>
+                <div class="tech-role">REPL & Completions</div>
+                <div class="tech-version">≥ 3.0 · Ctrl+R fuzzy search</div>
+            </div>
+            <div class="tech-card pygments reveal">
+                <div class="tech-name">Pygments</div>
+                <div class="tech-role">Syntax Highlighting</div>
+                <div class="tech-version">≥ 2.0 · MySQL lexer</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENCHMARK -->
+    <section class="bench-section" id="benchmarks">
+        <p class="sec-tag reveal">Benchmarks</p>
+        <h2 class="sec-title reveal">Measured. Not guessed.</h2>
+        <p class="sec-body reveal">Internal metrics from the v0.0.2 beta test suite. Open-source — verify them yourself.
+        </p>
+        <div class="bench-grid">
+            <div class="bench-card reveal" style="--bc:#00d4ff;--fill:92%">
+                <div class="bench-number">92<span>%</span></div>
+                <div class="bench-label">Auto-correction Accuracy</div>
+                <div class="bench-desc">Percentage of common shorthand queries correctly rewritten by the regex NLP
+                    engine across the test suite.</div>
+                <div class="bench-bar-bg">
+                    <div class="bench-bar" style="--bc:#00d4ff;width:0" data-width="92%"></div>
+                </div>
+            </div>
+            <div class="bench-card reveal" style="--bc:#00ff9d;--fill:100%">
+                <div class="bench-number">100<span>%</span></div>
+                <div class="bench-label">Safe Mode Block Rate</div>
+                <div class="bench-desc">Dangerous DELETE/UPDATE without WHERE are blocked in every test case. Zero false
+                    negatives recorded.</div>
+                <div class="bench-bar-bg">
+                    <div class="bench-bar" style="--bc:#00ff9d;width:0" data-width="100%"></div>
+                </div>
+            </div>
+            <div class="bench-card reveal" style="--bc:#a78bfa;--fill:87%">
+                <div class="bench-number">87<span>%</span></div>
+                <div class="bench-label">Completer Hit Rate</div>
+                <div class="bench-desc">Tab completions that matched the user's intent on the first suggestion, measured
+                    across 500 test queries.</div>
+                <div class="bench-bar-bg">
+                    <div class="bench-bar" style="--bc:#a78bfa;width:0" data-width="87%"></div>
+                </div>
+            </div>
+            <div class="bench-card reveal" style="--bc:#ffaa00;--fill:78%">
+                <div class="bench-number">&lt;2<span>ms</span></div>
+                <div class="bench-label">NLP Parse Latency</div>
+                <div class="bench-desc">Average time for the regex rule-engine to parse, correct, and dispatch a query
+                    to the appropriate DB plugin.</div>
+                <div class="bench-bar-bg">
+                    <div class="bench-bar" style="--bc:#ffaa00;width:0" data-width="78%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- COMMANDS -->
     <section class="commands-section" id="commands">
-        <p class="section-tag reveal">Reference</p>
-        <h2 class="section-title reveal">Dot commands</h2>
-        <p class="section-body reveal">Dot commands control the terminal itself. Type <code>.help</code> inside TerSQL
-            to see the full list at any time.</p>
-
+        <p class="sec-tag reveal">Reference</p>
+        <h2 class="sec-title reveal">Dot commands</h2>
+        <p class="sec-body reveal">Dot commands control the terminal. Type <code>.help</code> inside TerSQL to see the
+            full list anytime.</p>
         <div class="cmd-grid">
             <div class="reveal">
                 <div class="cmd-group-title">Information</div>
                 <div class="cmd-row"><span class="cmd-name">.status</span><span class="cmd-desc">Connection details and
                         session stats</span></div>
-                <div class="cmd-row"><span class="cmd-name">.db</span><span class="cmd-desc">Show selected
-                        database</span></div>
-                <div class="cmd-row"><span class="cmd-name">.tables</span><span class="cmd-desc">List tables in current
-                        database</span></div>
+                <div class="cmd-row"><span class="cmd-name">.dbs</span><span class="cmd-desc">List all databases</span>
+                </div>
+                <div class="cmd-row"><span class="cmd-name">.tables</span><span class="cmd-desc">List tables or
+                        collections</span></div>
                 <div class="cmd-row"><span class="cmd-name">.schema &lt;t&gt;</span><span class="cmd-desc">Describe
                         table columns</span></div>
-                <div class="cmd-row"><span class="cmd-name">.indexes &lt;t&gt;</span><span class="cmd-desc">Show indexes
-                        for a table</span></div>
-                <div class="cmd-row"><span class="cmd-name">.rowcount</span><span class="cmd-desc">Row counts for all
-                        tables</span></div>
-                <div class="cmd-row"><span class="cmd-name">.variables</span><span class="cmd-desc">MySQL system
-                        variables</span></div>
-                <div class="cmd-row"><span class="cmd-name">.processlist</span><span class="cmd-desc">Show full process
-                        list</span></div>
+                <div class="cmd-row"><span class="cmd-name">.use &lt;db&gt;</span><span class="cmd-desc">Switch active
+                        database</span></div>
+                <div class="cmd-row"><span class="cmd-name">.explain &lt;sql&gt;</span><span class="cmd-desc">Print
+                        translation without executing</span></div>
             </div>
             <div class="reveal">
-                <div class="cmd-group-title">Output</div>
+                <div class="cmd-group-title">Output & Export</div>
                 <div class="cmd-row"><span class="cmd-name">.format &lt;fmt&gt;</span><span class="cmd-desc">Set table
                         display format</span></div>
-                <div class="cmd-row"><span class="cmd-name">.output &lt;mode&gt;</span><span class="cmd-desc">Set output
-                        mode (table/json/csv/vertical)</span></div>
+                <div class="cmd-row"><span class="cmd-name">.output &lt;mode&gt;</span><span class="cmd-desc">table /
+                        json / csv / vertical</span></div>
                 <div class="cmd-row"><span class="cmd-name">.export &lt;file&gt;</span><span class="cmd-desc">Export
                         last result to CSV or JSON</span></div>
-                <div class="cmd-row"><span class="cmd-name">.pager [cmd]</span><span class="cmd-desc">Pipe output
-                        through less, more, etc.</span></div>
-                <div class="cmd-row"><span class="cmd-name">.tee &lt;file&gt;</span><span class="cmd-desc">Mirror output
-                        to a file</span></div>
+                <div class="cmd-row"><span class="cmd-name">.tee &lt;file&gt;</span><span class="cmd-desc">Mirror all
+                        output to a file</span></div>
                 <div class="cmd-row"><span class="cmd-name">.notee</span><span class="cmd-desc">Stop tee output</span>
                 </div>
+                <div class="cmd-row"><span class="cmd-name">.clear</span><span class="cmd-desc">Clear the terminal
+                        screen</span></div>
             </div>
             <div class="reveal">
                 <div class="cmd-group-title">Bookmarks</div>
@@ -1446,109 +2296,94 @@
                         bookmark</span></div>
             </div>
             <div class="reveal">
-                <div class="cmd-group-title">Diagnostics & Maintenance</div>
-                <div class="cmd-row"><span class="cmd-name">.explain &lt;sql&gt;</span><span class="cmd-desc">EXPLAIN a
-                        SELECT statement</span></div>
-                <div class="cmd-row"><span class="cmd-name">.profile on|off</span><span class="cmd-desc">Toggle query
-                        profiling</span></div>
-                <div class="cmd-row"><span class="cmd-name">.warnings</span><span class="cmd-desc">Show warnings from
-                        last query</span></div>
-                <div class="cmd-row"><span class="cmd-name">.diff &lt;t1&gt; &lt;t2&gt;</span><span
-                        class="cmd-desc">Schema diff between two tables</span></div>
-                <div class="cmd-row"><span class="cmd-name">.copy &lt;src&gt; &lt;dst&gt;</span><span
-                        class="cmd-desc">Copy table structure</span></div>
-                <div class="cmd-row"><span class="cmd-name">.source &lt;file.sql&gt;</span><span
-                        class="cmd-desc">Execute statements from a file</span></div>
-                <div class="cmd-row"><span class="cmd-name">.kill &lt;pid&gt;</span><span class="cmd-desc">Kill a
-                        process (with confirm)</span></div>
+                <div class="cmd-group-title">Diagnostics & Settings</div>
+                <div class="cmd-row"><span class="cmd-name">.history [n]</span><span class="cmd-desc">View last n
+                        executed commands</span></div>
+                <div class="cmd-row"><span class="cmd-name">.safe on|off</span><span class="cmd-desc">Toggle safe
+                        mode</span></div>
+                <div class="cmd-row"><span class="cmd-name">.readonly on|off</span><span class="cmd-desc">Toggle
+                        read-only pipeline</span></div>
+                <div class="cmd-row"><span class="cmd-name">.timer on|off</span><span class="cmd-desc">Toggle query
+                        elapsed-time display</span></div>
+                <div class="cmd-row"><span class="cmd-name">.reconnect</span><span class="cmd-desc">Restart the database
+                        connection</span></div>
+                <div class="cmd-row"><span class="cmd-name">.help</span><span class="cmd-desc">Show the full command
+                        reference</span></div>
             </div>
         </div>
     </section>
 
     <!-- INSTALL -->
     <section class="install-section" id="install">
-        <p class="section-tag reveal">Setup</p>
-        <h2 class="section-title reveal">Get running in 60 seconds</h2>
-        <p class="section-body reveal">Install the dependencies and run TerSQL in any environment.</p>
-
-        <div class="reveal" style="max-width: 720px; margin-top: 3rem;">
+        <p class="sec-tag reveal">Setup</p>
+        <h2 class="sec-title reveal">Running in under 60 seconds</h2>
+        <p class="sec-body reveal">Clone, install five packages, run. No build step. No package manager. No
+            configuration files.</p>
+        <div class="reveal" style="max-width:720px;margin-top:3rem">
             <div class="install-tabs">
                 <button class="tab-btn active" onclick="showTab('quick')">Quick start</button>
                 <button class="tab-btn" onclick="showTab('unix')">Unix / macOS</button>
                 <button class="tab-btn" onclick="showTab('ssl')">SSL / TLS</button>
                 <button class="tab-btn" onclick="showTab('batch')">Batch mode</button>
             </div>
-
             <div id="tab-quick" class="tab-panel active">
                 <button class="copy-btn" onclick="copyCode('tab-quick')">copy</button>
                 <div class="code-block">
-                    <div class="code-line"><span class="code-comment"># Clone and install dependencies</span></div>
-                    <div class="code-line"><span class="code-prompt">$</span><span class="code-text"> git clone
+                    <div class="code-line"><span class="cc"># Clone and install dependencies</span></div>
+                    <div class="code-line"><span class="cp">$</span><span class="ct"> git clone
                             https://github.com/developersayandutta/TerSQL.git</span></div>
-                    <div class="code-line"><span class="code-prompt">$</span><span class="code-text"> cd TerSQL/v0.0.2
-                            && pip
-                            install -r requirements.txt</span></div>
+                    <div class="code-line"><span class="cp">$</span><span class="ct"> cd TerSQL && pip install -r
+                            requirements.txt</span></div>
                     <div class="code-line">&nbsp;</div>
-                    <div class="code-line"><span class="code-comment"># Start the multi-DB terminal</span></div>
-                    <div class="code-line"><span class="code-prompt">$</span><span class="code-text"> python
-                            main.py</span></div>
+                    <div class="code-line"><span class="cc"># Start the interactive terminal</span></div>
+                    <div class="code-line"><span class="cp">$</span><span class="ct"> python main.py</span></div>
                 </div>
             </div>
-
             <div id="tab-unix" class="tab-panel">
                 <button class="copy-btn" onclick="copyCode('tab-unix')">copy</button>
                 <div class="code-block">
-                    <div class="code-line"><span class="code-comment"># Make executable wrapper</span></div>
-                    <div class="code-line"><span class="code-prompt">$</span><span class="code-text"> echo 'python
+                    <div class="code-line"><span class="cc"># Make executable and install system-wide</span></div>
+                    <div class="code-line"><span class="cp">$</span><span class="ct"> echo 'python
                             /path/to/TerSQL/main.py "$@"' > tersql</span></div>
-                    <div class="code-line"><span class="code-prompt">$</span><span class="code-text"> chmod +x
-                            tersql</span></div>
-                    <div class="code-line">&nbsp;</div>
-                    <div class="code-line"><span class="code-comment"># Install system-wide</span></div>
-                    <div class="code-line"><span class="code-prompt">$</span><span class="code-text"> sudo mv tersql
+                    <div class="code-line"><span class="cp">$</span><span class="ct"> chmod +x tersql && sudo mv tersql
                             /usr/local/bin/tersql</span></div>
                     <div class="code-line">&nbsp;</div>
-                    <div class="code-line"><span class="code-comment"># Run from anywhere</span></div>
-                    <div class="code-line"><span class="code-prompt">$</span><span class="code-text"> tersql</span>
-                    </div>
+                    <div class="code-line"><span class="cc"># Run from anywhere</span></div>
+                    <div class="code-line"><span class="cp">$</span><span class="ct"> tersql</span></div>
                 </div>
             </div>
-
             <div id="tab-ssl" class="tab-panel">
                 <button class="copy-btn" onclick="copyCode('tab-ssl')">copy</button>
                 <div class="code-block">
-                    <div class="code-line"><span class="code-prompt">$</span><span class="code-text"> python main.py
-                            \</span></div>
-                    <div class="code-line"><span class="code-text">&nbsp;&nbsp;<span class="code-flag">-H</span> <span
-                                class="code-val">secure.db.example.com</span> \</span></div>
-                    <div class="code-line"><span class="code-text">&nbsp;&nbsp;<span class="code-flag">-u</span> <span
-                                class="code-val">myuser</span> \</span></div>
-                    <div class="code-line"><span class="code-text">&nbsp;&nbsp;<span class="code-flag">--ssl-ca</span>
-                            <span class="code-val">/etc/ssl/mysql/ca.pem</span> \</span></div>
-                    <div class="code-line"><span class="code-text">&nbsp;&nbsp;<span class="code-flag">--ssl-cert</span>
-                            <span class="code-val">/etc/ssl/mysql/client-cert.pem</span> \</span></div>
-                    <div class="code-line"><span class="code-text">&nbsp;&nbsp;<span class="code-flag">--ssl-key</span>
-                            <span class="code-val">/etc/ssl/mysql/client-key.pem</span></span></div>
+                    <div class="code-line"><span class="cp">$</span><span class="ct"> python main.py \</span></div>
+                    <div class="code-line"><span class="ct">&nbsp;&nbsp;<span class="cf">-H</span> <span
+                                class="cv">secure.db.example.com</span> \</span></div>
+                    <div class="code-line"><span class="ct">&nbsp;&nbsp;<span class="cf">-u</span> <span
+                                class="cv">myuser</span> \</span></div>
+                    <div class="code-line"><span class="ct">&nbsp;&nbsp;<span class="cf">--ssl-ca</span> <span
+                                class="cv">/etc/ssl/mysql/ca.pem</span> \</span></div>
+                    <div class="code-line"><span class="ct">&nbsp;&nbsp;<span class="cf">--ssl-cert</span> <span
+                                class="cv">/etc/ssl/mysql/client-cert.pem</span> \</span></div>
+                    <div class="code-line"><span class="ct">&nbsp;&nbsp;<span class="cf">--ssl-key</span> <span
+                                class="cv">/etc/ssl/mysql/client-key.pem</span></span></div>
                 </div>
             </div>
-
             <div id="tab-batch" class="tab-panel">
                 <button class="copy-btn" onclick="copyCode('tab-batch')">copy</button>
                 <div class="code-block">
-                    <div class="code-line"><span class="code-comment"># Single query, exit immediately</span></div>
-                    <div class="code-line"><span class="code-prompt">$</span><span class="code-text"> python main.py
-                            <span class="code-flag">-e</span> <span class="code-val">"SELECT COUNT(*) FROM
-                                orders;"</span></span></div>
+                    <div class="code-line"><span class="cc"># Single query, exit immediately</span></div>
+                    <div class="code-line"><span class="cp">$</span><span class="ct"> python main.py <span
+                                class="cf">-e</span> <span class="cv">"SELECT COUNT(*) FROM orders;"</span></span></div>
                     <div class="code-line">&nbsp;</div>
-                    <div class="code-line"><span class="code-comment"># JSON output for scripts</span></div>
-                    <div class="code-line"><span class="code-prompt">$</span><span class="code-text"> python main.py
-                            <span class="code-flag">--output</span> json <span class="code-flag">-e</span> <span
-                                class="code-val">"SELECT id, name FROM products;"</span></span></div>
+                    <div class="code-line"><span class="cc"># JSON output for scripts</span></div>
+                    <div class="code-line"><span class="cp">$</span><span class="ct"> python main.py <span
+                                class="cf">--output</span> json <span class="cf">-e</span> <span class="cv">"SELECT id,
+                                name FROM products;"</span></span></div>
                     <div class="code-line">&nbsp;</div>
-                    <div class="code-line"><span class="code-comment"># Export CSV to file</span></div>
-                    <div class="code-line"><span class="code-prompt">$</span><span class="code-text"> python main.py
-                            <span class="code-flag">--output</span> csv <span class="code-flag">-e</span> <span
-                                class="code-val">"SELECT * FROM customers;"</span> > out.csv</span></div>
+                    <div class="code-line"><span class="cc"># Export CSV to file</span></div>
+                    <div class="code-line"><span class="cp">$</span><span class="ct"> python main.py <span
+                                class="cf">--output</span> csv <span class="cf">-e</span> <span class="cv">"SELECT *
+                                FROM customers;"</span> > out.csv</span></div>
                 </div>
             </div>
         </div>
@@ -1556,84 +2391,78 @@
 
     <!-- OUTPUT MODES -->
     <section class="modes-section" id="formats">
-        <p class="section-tag reveal">Output</p>
-        <h2 class="section-title reveal">11 formats. 4 modes.</h2>
-        <p class="section-body reveal">Switch format or mode live without reconnecting. Use <code>.format</code> and
-            <code>.output</code> anytime.
+        <p class="sec-tag reveal">Output</p>
+        <h2 class="sec-title reveal">11 formats. 4 modes.</h2>
+        <p class="sec-body reveal">Switch format or mode live without reconnecting. Use <code>.format</code> and
+            <code>.output</code> at any time.
         </p>
-
         <div class="mode-grid">
             <div class="mode-card reveal">
                 <div class="mode-name">grid</div>
-                <div class="mode-desc">Box-drawing borders. The default.</div>
+                <div class="mode-desc">Box-drawing borders. Default.</div>
             </div>
             <div class="mode-card reveal">
                 <div class="mode-name">psql</div>
-                <div class="mode-desc">PostgreSQL-style pipes and dashes.</div>
+                <div class="mode-desc">PostgreSQL-style pipes.</div>
             </div>
             <div class="mode-card reveal">
                 <div class="mode-name">markdown</div>
-                <div class="mode-desc">Pipe table, ready to paste into docs.</div>
+                <div class="mode-desc">Pipe table for docs.</div>
             </div>
             <div class="mode-card reveal">
                 <div class="mode-name">github</div>
-                <div class="mode-desc">GitHub-flavored Markdown table.</div>
+                <div class="mode-desc">GitHub-flavored Markdown.</div>
             </div>
             <div class="mode-card reveal">
                 <div class="mode-name">html</div>
-                <div class="mode-desc">Raw &lt;table&gt; for browser rendering.</div>
+                <div class="mode-desc">Raw &lt;table&gt; output.</div>
             </div>
             <div class="mode-card reveal">
                 <div class="mode-name">latex</div>
-                <div class="mode-desc">LaTeX tabular environment output.</div>
+                <div class="mode-desc">LaTeX tabular environment.</div>
             </div>
             <div class="mode-card reveal">
                 <div class="mode-name">json</div>
-                <div class="mode-desc">Pretty-printed array of objects.</div>
+                <div class="mode-desc">Pretty-printed array.</div>
             </div>
             <div class="mode-card reveal">
                 <div class="mode-name">csv</div>
-                <div class="mode-desc">Comma-separated with header row.</div>
+                <div class="mode-desc">CSV with header row.</div>
             </div>
             <div class="mode-card reveal">
                 <div class="mode-name">vertical</div>
-                <div class="mode-desc">One column per line, MySQL \G style.</div>
+                <div class="mode-desc">One column per line (\G).</div>
             </div>
             <div class="mode-card reveal">
                 <div class="mode-name">plain</div>
-                <div class="mode-desc">No borders, space-aligned columns.</div>
+                <div class="mode-desc">No borders, space-aligned.</div>
             </div>
             <div class="mode-card reveal">
                 <div class="mode-name">rst</div>
-                <div class="mode-desc">reStructuredText grid table.</div>
+                <div class="mode-desc">reStructuredText table.</div>
             </div>
         </div>
     </section>
 
     <!-- SAFETY -->
     <section class="safety-section" id="safety">
-        <p class="section-tag reveal">Protection</p>
-        <h2 class="section-title reveal">Two layers of safety</h2>
-        <p class="section-body reveal">Opt-in guards that catch mistakes before they cost you. Ideal for production
-            databases and shared environments.</p>
-
+        <p class="sec-tag reveal">Protection</p>
+        <h2 class="sec-title reveal">Two layers of safety</h2>
+        <p class="sec-body reveal">Opt-in guards that catch mistakes before they cost you. Essential for production
+            databases and beginners alike.</p>
         <div class="safety-cards">
             <div class="safety-card safe reveal">
-                <div class="safety-card-label">Safe Mode</div>
+                <div class="sc-label">Safe Mode</div>
                 <h3>Guard Rails for Dangerous Queries</h3>
-                <p>Blocks <code>DELETE</code> and <code>UPDATE</code> statements without a <code>WHERE</code> clause
-                    entirely. Requires typing <code>yes</code> before executing <code>DROP TABLE</code> or
-                    <code>TRUNCATE</code>.
-                </p>
+                <p>Blocks <code>DELETE</code> and <code>UPDATE</code> without a <code>WHERE</code> clause. Requires
+                    typing <code>yes</code> before <code>DROP TABLE</code> or <code>TRUNCATE</code> executes.</p>
                 <span class="flag-tag">--safe-mode</span>
             </div>
             <div class="safety-card lock reveal">
-                <div class="safety-card-label">Read-only Mode</div>
+                <div class="sc-label">Read-only Mode</div>
                 <h3>Zero-Risk Production Access</h3>
-                <p>Blocks all write operations at the terminal level — before the query reaches the server.
-                    <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>, <code>DROP</code>,
-                    <code>ALTER</code>, <code>GRANT</code>, and more.
-                </p>
+                <p>Blocks all write operations at the terminal NLP layer before the query reaches the server. Ideal for
+                    analysts querying live production databases.</p>
                 <span class="flag-tag">--read-only</span>
             </div>
         </div>
@@ -1641,46 +2470,39 @@
 
     <!-- CONTRIBUTE -->
     <section class="contribute-section" id="contribute">
-        <p class="section-tag reveal">Open Source</p>
-        <h2 class="section-title reveal">Built in the open.<br>Improved together.</h2>
-        <p class="section-body reveal">TerSQL welcomes contributions of all kinds. You don't need to write code to make
-            an impact.</p>
-
+        <p class="sec-tag reveal">Open Source</p>
+        <h2 class="sec-title reveal">Built in the open.<br>Improved together.</h2>
+        <p class="sec-body reveal">TerSQL welcomes all contribution types. You don't need to write code to make an
+            impact.</p>
         <div class="contribute-grid">
-            <div class="contribute-card reveal">
-                <span class="icon">🐛</span>
+            <div class="contribute-card reveal"><span class="ic">🐛</span>
                 <h4>Report Bugs</h4>
                 <p>Found something broken? Open an issue with your OS, Python version, and steps to reproduce.</p>
             </div>
-            <div class="contribute-card reveal">
-                <span class="icon">💡</span>
+            <div class="contribute-card reveal"><span class="ic">💡</span>
                 <h4>Suggest Features</h4>
-                <p>Have an idea? Start a GitHub Discussion before writing code so we can align on the approach.</p>
+                <p>Have an idea? Start a GitHub Discussion before writing code so we can align on the approach first.
+                </p>
             </div>
-            <div class="contribute-card reveal">
-                <span class="icon">📝</span>
+            <div class="contribute-card reveal"><span class="ic">📝</span>
                 <h4>Improve Docs</h4>
                 <p>Fix typos, improve examples, or clarify sections that confused you when you first used TerSQL.</p>
             </div>
-            <div class="contribute-card reveal">
-                <span class="icon">🔌</span>
-                <h4>Add Dot Commands</h4>
-                <p>Adding a command takes three steps — write a handler, register it, document it. See CONTRIBUTING.md.
-                </p>
+            <div class="contribute-card reveal"><span class="ic">🔌</span>
+                <h4>Add DB Plugins</h4>
+                <p>Subclass <code>BaseDB</code> in <code>plugins/</code> to add Redis, SQLite, or any other database
+                    driver.</p>
             </div>
-            <div class="contribute-card reveal">
-                <span class="icon">🧪</span>
+            <div class="contribute-card reveal"><span class="ic">🧪</span>
                 <h4>Write Tests</h4>
                 <p>Coverage for edge cases, auto-correction patterns, and safety guards is always welcome.</p>
             </div>
-            <div class="contribute-card reveal">
-                <span class="icon">⭐</span>
+            <div class="contribute-card reveal"><span class="ic">⭐</span>
                 <h4>Spread the Word</h4>
                 <p>Star the repo, share it with your team, or write a blog post about how you use TerSQL.</p>
             </div>
         </div>
-
-        <div style="margin-top: 3rem; display: flex; gap: 1rem; flex-wrap: wrap;" class="reveal">
+        <div style="margin-top:3rem;display:flex;gap:1rem;flex-wrap:wrap" class="reveal">
             <a href="https://github.com/developersayandutta/TerSQL/blob/main/CONTRIBUTING.md" class="btn-primary"
                 target="_blank">Read CONTRIBUTING.md</a>
             <a href="https://github.com/developersayandutta/TerSQL/issues?q=label%3A%22good+first+issue%22"
@@ -1688,13 +2510,29 @@
         </div>
     </section>
 
+    <!-- BUY ME A COFFEE -->
+    <section class="coffee-section" id="support">
+        <span class="coffee-icon reveal">☕</span>
+        <h2 class="coffee-title reveal">Support TerSQL</h2>
+        <p class="coffee-desc reveal">TerSQL is free and open-source forever. If it saved you time, helped you learn
+            SQL, or just made your terminal a nicer place — consider buying me a coffee. Every one is genuinely
+            appreciated.</p>
+        <a href="https://buymeacoffee.com/s_a_y_a_n" class="coffee-btn reveal" target="_blank">
+            ☕ Buy Me a Coffee
+        </a>
+        <p class="coffee-supporters reveal" style="margin-top:1.5rem">Made with ❤️ by <strong
+                style="color:var(--text-bright)">Sayan Dutta</strong> · MIT License · Free forever</p>
+    </section>
+
     <!-- CTA -->
     <section class="cta-section">
         <h2 class="reveal">Start using TerSQL<br>right now.</h2>
-        <p class="reveal">Stop struggling with SQL syntax. Start learning by doing - with TerSQL.</p>
+        <p class="reveal">No prior coding knowledge needed. SQL for everyone.</p>
         <div class="cta-buttons reveal">
             <a href="#install" class="btn-primary">⬇ Install TerSQL</a>
             <a href="https://github.com/developersayandutta/TerSQL" class="btn-ghost" target="_blank">View on GitHub</a>
+            <a href="https://buymeacoffee.com/s_a_y_a_n" class="btn-ghost" target="_blank"
+                style="border-color:rgba(255,193,7,.4);color:#ffc107">☕ Support</a>
         </div>
     </section>
 
@@ -1703,17 +2541,137 @@
         <div class="footer-brand">TerSQL <span>v0.0.2 beta · MIT License</span></div>
         <ul class="footer-links">
             <li><a href="https://github.com/developersayandutta/TerSQL" target="_blank">GitHub</a></li>
-            <li><a href="https://github.com/developersayandutta/TerSQL/README.md" target="_blank">README</a></li>
-            <li><a href="https://github.com/developersayandutta/TerSQL/CONTRIBUTING.md" target="_blank">Contributing</a>
+            <li><a href="https://github.com/developersayandutta/TerSQL/blob/main/README.md" target="_blank">README</a>
             </li>
+            <li><a href="https://github.com/developersayandutta/TerSQL/blob/main/CONTRIBUTING.md"
+                    target="_blank">Contributing</a></li>
             <li><a href="https://github.com/developersayandutta/TerSQL/issues" target="_blank">Issues</a></li>
-            <li><a href="https://github.com/developersayandutta/TerSQL/releases" target="_blank">Releases</a></li>
+            <li><a href="https://buymeacoffee.com/s_a_y_a_n" target="_blank">☕ Support</a></li>
         </ul>
-        <span class="footer-copy">Built with Python · Made for developers</span>
+        <span class="footer-copy">Built with Python · No coding knowledge required · Made for everyone</span>
     </footer>
 
     <script>
-        // ── Tab switcher
+        /* ── DEMO DATA ── */
+        const DEMOS = [
+            {
+                nl: "show me all users",
+                fix: true,
+                fixLabel: "[auto-fix] → SELECT * FROM users;",
+                sql: `<span class="sql-kw">SELECT</span> * <span class="sql-kw">FROM</span> <span class="sql-tbl">users</span>;`,
+                rows: [
+                    { id: '1', name: 'Alice', email: 'alice@dev.io', role: '<span style="color:var(--accent3)">admin</span>' },
+                    { id: '2', name: 'Bob', email: 'bob@dev.io', role: 'user' },
+                    { id: '3', name: 'Carol', email: 'carol@dev.io', role: 'user' },
+                ],
+                cols: ['id', 'name', 'email', 'role'],
+                meta: '3 row(s) returned · 0.0018 sec',
+            },
+            {
+                nl: "count orders by status",
+                fix: true,
+                fixLabel: "[auto-fix] → SELECT status, COUNT(*) AS total FROM orders GROUP BY status;",
+                sql: `<span class="sql-kw">SELECT</span> status, <span class="sql-fn">COUNT</span>(*) <span class="sql-kw">AS</span> total <span class="sql-kw">FROM</span> <span class="sql-tbl">orders</span> <span class="sql-kw">GROUP BY</span> status;`,
+                rows: [
+                    { status: '<span style="color:var(--accent3)">active</span>', total: '142' },
+                    { status: '<span style="color:var(--warn)">pending</span>', total: '38' },
+                    { status: '<span style="color:var(--error)">closed</span>', total: '91' },
+                ],
+                cols: ['status', 'total'],
+                meta: '3 row(s) returned · 0.0031 sec',
+            },
+            {
+                nl: "select * users where active",
+                fix: true,
+                fixLabel: "[auto-fix] → SELECT * FROM users WHERE active = 1;",
+                sql: `<span class="sql-kw">SELECT</span> * <span class="sql-kw">FROM</span> <span class="sql-tbl">users</span> <span class="sql-kw">WHERE</span> active = <span class="sql-num">1</span>;`,
+                rows: [
+                    { id: '1', name: 'Alice', active: '<span style="color:var(--accent3)">1</span>' },
+                    { id: '2', name: 'Bob', active: '<span style="color:var(--accent3)">1</span>' },
+                ],
+                cols: ['id', 'name', 'active'],
+                meta: '2 row(s) returned · 0.0022 sec',
+            },
+            {
+                nl: "desc products",
+                fix: true,
+                fixLabel: "[auto-fix] → DESCRIBE products;",
+                sql: `<span class="sql-kw">DESCRIBE</span> <span class="sql-tbl">products</span>;`,
+                rows: [
+                    { Field: 'id', Type: 'int(11)', Null: 'NO', Key: 'PRI' },
+                    { Field: 'name', Type: 'varchar(255)', Null: 'NO', Key: '' },
+                    { Field: 'price', Type: 'decimal(10,2)', Null: 'YES', Key: '' },
+                    { Field: 'stock', Type: 'int(11)', Null: 'YES', Key: 'MUL' },
+                ],
+                cols: ['Field', 'Type', 'Null', 'Key'],
+                meta: '4 row(s) returned · 0.0009 sec',
+            },
+            {
+                nl: "show top 3 revenue customers",
+                fix: true,
+                fixLabel: "[auto-fix] → SELECT name, revenue FROM customers ORDER BY revenue DESC LIMIT 3;",
+                sql: `<span class="sql-kw">SELECT</span> name, revenue <span class="sql-kw">FROM</span> <span class="sql-tbl">customers</span> <span class="sql-kw">ORDER BY</span> revenue <span class="sql-kw">DESC</span> <span class="sql-kw">LIMIT</span> <span class="sql-num">3</span>;`,
+                rows: [
+                    { name: 'Acme Corp', revenue: '<span style="color:#63b3ff">$482,100</span>' },
+                    { name: 'Nova Ltd', revenue: '<span style="color:#63b3ff">$319,450</span>' },
+                    { name: 'Zeta Inc', revenue: '<span style="color:#63b3ff">$275,800</span>' },
+                ],
+                cols: ['name', 'revenue'],
+                meta: '3 row(s) returned · 0.0041 sec',
+            }
+        ];
+
+        let activeDemo = 0;
+
+        document.querySelectorAll('.nl-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.nl-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeDemo = parseInt(btn.dataset.id);
+                resetOutput();
+            });
+        });
+
+        function resetOutput() {
+            document.getElementById('sqlOut').innerHTML = '';
+            document.getElementById('resultOut').innerHTML = '';
+        }
+
+        document.getElementById('runBtn').addEventListener('click', async () => {
+            const btn = document.getElementById('runBtn');
+            const proc = document.getElementById('processing');
+            const sqlOut = document.getElementById('sqlOut');
+            const resultOut = document.getElementById('resultOut');
+            const d = DEMOS[activeDemo];
+
+            btn.disabled = true;
+            sqlOut.innerHTML = '';
+            resultOut.innerHTML = '';
+            proc.classList.add('show');
+
+            await sleep(900);
+            proc.classList.remove('show');
+
+            if (d.fix) {
+                sqlOut.innerHTML = `<div style="color:var(--purple);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem">auto-correction applied</div><div style="color:var(--text-dim);font-size:.72rem;margin-bottom:.8rem">${d.fixLabel}</div>`;
+            }
+            sqlOut.innerHTML += `<div style="margin-bottom:.8rem">${d.sql}</div>`;
+
+            await sleep(300);
+
+            let tableHTML = `<table class="result-table"><tr>${d.cols.map(c => `<th>${c}</th>`).join('')}</tr>`;
+            for (const row of d.rows) {
+                tableHTML += `<tr>${d.cols.map(c => `<td>${row[c]}</td>`).join('')}</tr>`;
+            }
+            tableHTML += `</table><div class="result-meta">${d.meta}</div>`;
+            resultOut.innerHTML = tableHTML;
+
+            btn.disabled = false;
+        });
+
+        function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+        /* ── TABS ── */
         function showTab(id) {
             document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1721,14 +2679,11 @@
             event.target.classList.add('active');
         }
 
-        // ── Copy button
+        /* ── COPY ── */
         function copyCode(panelId) {
             const panel = document.getElementById(panelId);
             const lines = panel.querySelectorAll('.code-line');
-            const text = Array.from(lines)
-                .map(l => l.textContent.replace(/^\$\s*/, '').trim())
-                .filter(l => l && !l.startsWith('#'))
-                .join('\n');
+            const text = Array.from(lines).map(l => l.textContent.replace(/^\$\s*/, '').trim()).filter(l => l && !l.startsWith('#')).join('\n');
             navigator.clipboard.writeText(text).then(() => {
                 const btn = panel.querySelector('.copy-btn');
                 btn.textContent = 'copied!';
@@ -1736,22 +2691,28 @@
             });
         }
 
-        // ── Scroll reveal
+        /* ── SCROLL REVEAL ── */
         const observer = new IntersectionObserver(entries => {
             entries.forEach((e, i) => {
                 if (e.isIntersecting) {
-                    e.target.style.transitionDelay = (i * 0.04) + 's';
+                    e.target.style.transitionDelay = (i * .045) + 's';
                     e.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
+        }, { threshold: .08, rootMargin: '0px 0px -36px 0px' });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        /* ── BENCHMARK BARS ── */
+        const barObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    const bar = e.target.querySelector('.bench-bar');
+                    if (bar) bar.style.width = bar.dataset.width;
+                }
+            });
+        }, { threshold: .3 });
+        document.querySelectorAll('.bench-card').forEach(c => barObs.observe(c));
     </script>
-    <a href='https://www.symptoma.it/'>symptom checker</a>
-    <script type='text/javascript'
-        src='https://www.freevisitorcounters.com/auth.php?id=fb3682a2ed9bcaea33a4049cc38871254046a50e'></script>
-    <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1532165/t/3"></script>
 </body>
 
 </html>
