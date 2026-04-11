@@ -62,6 +62,7 @@ TerSQL currently operates directly from its modular repository.
 ```bash
 git clone https://github.com/developersayandutta/TerSQL.git
 cd TerSQL/v0.0.2
+pip install -r requirements.txt
 python main.py
 ```
 
