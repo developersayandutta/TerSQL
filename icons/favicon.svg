@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2b2b2b" />
+      <stop offset="100%" stop-color="#121212" />
+    </linearGradient>
+    
+    <linearGradient id="dbGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4F46E5" />
+      <stop offset="100%" stop-color="#312E81" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+  
+  <path d="M 136 200 L 136 380 A 120 45 0 0 0 376 380 L 376 200" fill="url(#dbGrad)" stroke="#818CF8" stroke-width="14"/>
+  
+  <path d="M 136 290 A 120 45 0 0 0 376 290" fill="none" stroke="#818CF8" stroke-width="14" />
+  
+  <ellipse cx="256" cy="200" rx="120" ry="45" fill="#4338CA" stroke="#818CF8" stroke-width="14" />
+  
+  <text x="180" y="245" font-family="Courier New, monospace" font-size="84" font-weight="900" fill="#10B981">&gt;</text>
+  
+  <rect x="255" y="245" width="45" height="12" fill="#10B981" />
+</svg>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Generating apple-touch-icon.png...</h2>
+    <img id="svgImg" src="favicon.svg" style="display:none;" onload="generatePNG()">
+    <canvas id="canvas" style="display:none;"></canvas>
+    
+    <script>
+        function generatePNG() {
+            const img = document.getElementById('svgImg');
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set exact dimensions for Apple Touch Icon
+            canvas.width = 512;
+            canvas.height = 512;
+            
+            // Draw the SVG onto the canvas
+            ctx.drawImage(img, 0, 0, 512, 512);
+            
+            // Trigger automatic download
+            const a = document.createElement('a');
+            a.download = 'icon-512.png';
+            a.href = canvas.toDataURL('image/png');
+            a.click();
+            
+            document.body.innerHTML += "<p>✅ Downloaded! Check your Downloads folder.</p>";
+        }
+    </script>
+</body>
+</html>
