@@ -9,8 +9,9 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/status-beta-orange.svg)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-☕-yellow?logo=buy-me-a-coffee&logoColor=white)](https://buymeacoffee.com/s_a_y_a_n)
 
-[Features](#features) · [Installation](#installation) · [Quick Start](#quick-start) · [Documentation](#dot-commands-reference) · [Contributing](#contributing)
+[Features](#features) · [Installation](#installation) · [Quick Start](#quick-start) · [Documentation](#dot-commands-reference) · [Contributing](#contributing) · [Support](#-support-this-project)
 
 </div>
 
@@ -231,7 +232,7 @@ TerSQL [mysql:?] > DELETE FROM users;
 
 ### Read-only Mode (`--read-only`)
 
-Blocks all write operations at the terminal NLP layer before it even hits the engine drivers. 
+Blocks all write operations at the terminal NLP layer before it even hits the engine drivers.  
 Blocked intents: `INSERT`, `UPDATE`, `DELETE`, `DROP`, `CREATE`, `ALTER`.
 
 ```bash
@@ -311,6 +312,7 @@ TerSQL strictly leverages an extensible architecture split between `TerSQL.py`, 
 ### Writing a new Database Driver Plugin
 
 Create a script bridging inside the `plugins/` directory subclassing `BaseDB`:
+
 ```python
 from plugins.base import BaseDB, QueryResult, register_plugin
 
@@ -346,7 +348,7 @@ SQL_FIXES = {
 
 Review our detailed contribution pathways inside [CONTRIBUTING.md](CONTRIBUTING.md).
 
-For bugs, outline the standard environments (`Python --version`, specific database drivers, and local crash traces). 
+For bugs, outline the standard environments (`Python --version`, specific database drivers, and local crash traces).
 
 ---
 
@@ -358,7 +360,7 @@ For bugs, outline the standard environments (`Python --version`, specific databa
 - **Database Diversity**: Integrated driver architectures spanning native `postgresql` and non-relational `mongodb` integrations beside the core mysql baseline.
 - **NLP Engine Pipeline**: Created strict Python regex natural language rules to execute structural tasks omitting LLM fallback integrations entirely.
 - **Smart Completer Sync**: Rewritten smart completing syntax injecting dynamic engine dictionaries live across active sessions!
-- Strict UI terminal encapsulation splitting REPL bindings from Core logic executions. 
+- Strict UI terminal encapsulation splitting REPL bindings from Core logic executions.
 - Repaired unhandled runtime crashes bypassing transaction aborts natively.
 
 ### v0.0.1 (beta) — Initial Release
@@ -367,6 +369,20 @@ For bugs, outline the standard environments (`Python --version`, specific databa
 - Persistent query history with fuzzy search (`Ctrl+R`)
 - Base Output configurations and `.bookmark` states mappings.
 - Safe mode and read-only mode architectures.
+
+---
+
+## ☕ Support this project
+
+If you find TerSQL useful, consider buying me a coffee — it helps keep the project alive and actively maintained!
+
+<div align="center">
+
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-☕%20Support%20Sayan-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/s_a_y_a_n)
+
+</div>
+
+Every coffee is genuinely appreciated. Thank you for the support! 🙏
 
 ---
 
