@@ -1,0 +1,585 @@
+{
+  "_meta": {
+    "version": "2.1.0",
+    "description": "TerSQL intent patterns — rule-based NLP engine",
+    "slot_types": ["table", "column", "value", "condition", "limit", "order", "join_table", "join_on", "agg_fn", "group_col"],
+    "changelog": "v2.1.0: added between_range, in_list, not_like_search, show_primary_keys intents; expanded drop_schema/view patterns; aligned with ConditionParser v0.0.3 (BETWEEN, IN list, NOT LIKE/NOT IN)"
+  },
+
+  "intents": [
+
+    {
+      "name": "select_all",
+      "priority": 10,
+      "patterns": [
+        "show (all |every |all the )?(?:rows |records |entries |data )?(?:from |in )?(?P<table>\\w+)",
+        "get (all |every |all the )?(?:rows |records |data )?(?:from |in )?(?P<table>\\w+)",
+        "list (all |every )?(?:rows |records |data )?(?:from |in )?(?P<table>\\w+)",
+        "display (?P<table>\\w+)",
+        "fetch (?:all (?:rows |records )?(?:from |in )?)?(?P<table>\\w+)",
+        "select \\* from (?P<table>\\w+)",
+        "dump (?P<table>\\w+)"
+      ],
+      "required_slots": ["table"],
+      "sql_template": "SELECT * FROM {table}",
+      "examples": [
+        "show all rows from users",
+        "list records in orders",
+        "fetch employees"
+      ]
+    },
+
+    {
+      "name": "select_columns",
+      "priority": 20,
+      "patterns": [
+        "(?:show|get|fetch|select|display) (?P<columns>[\\w, ]+?) (?:from|in) (?P<table>\\w+)",
+        "what (?:are|is) (?:the )?(?P<columns>[\\w, ]+?) (?:of|for|in) (?P<table>\\w+)"
+      ],
+      "required_slots": ["table", "columns"],
+      "sql_template": "SELECT {columns} FROM {table}",
+      "examples": [
+        "show name, email from users",
+        "get id, title from products",
+        "what is the salary of employees"
+      ]
+    },
+
+    {
+      "name": "select_with_filter",
+      "priority": 30,
+      "patterns": [
+        "(?:show|get|fetch|find|list|select) (?:all |every )?(?P<columns>[\\w ,*]+?) (?:from|in) (?P<table>\\w+) where (?P<condition>.+)",
+        "(?:show|get|fetch|find|list) (?P<columns>[\\w ,*]+?) (?:from|in) (?P<table>\\w+) (?:where|with|that (?:have|has)|having) (?P<condition>.+)",
+        "(?:find|get|show) (?:all |every )?(?:records?|rows?|entries?) (?:from|in) (?P<table>\\w+) (?:where|with|that) (?P<condition>.+)",
+        "(?:find|show|get) (?P<table>\\w+) (?:where|with) (?P<condition>.+)"
+      ],
+      "required_slots": ["table", "condition"],
+      "sql_template": "SELECT {columns} FROM {table} WHERE {condition}",
+      "slot_defaults": {"columns": "*"},
+      "examples": [
+        "find users where age > 30",
+        "show records from orders where status = 'pending'",
+        "get employees with salary > 50000"
+      ]
+    },
+
+    {
+      "name": "select_with_natural_filter",
+      "priority": 35,
+      "patterns": [
+        "(?:find|show|get|list) (?P<table>\\w+) (?:named|called|with name) (?P<value>[\\w '\"]+)",
+        "(?:find|show|get) (?P<table>\\w+) (?:older than|above age) (?P<value>\\d+)",
+        "(?:find|show|get) (?P<table>\\w+) (?:younger than|below age|under age) (?P<value>\\d+)",
+        "(?:find|show|get) (?P<table>\\w+) (?:more than|greater than|over) (?P<value>[\\d.]+)",
+        "(?:find|show|get) (?P<table>\\w+) (?:less than|under|below) (?P<value>[\\d.]+)"
+      ],
+      "required_slots": ["table"],
+      "sql_template": "SELECT * FROM {table} WHERE {condition}",
+      "condition_builder": "natural",
+      "examples": [
+        "find users older than 30",
+        "show products less than 100"
+      ]
+    },
+
+    {
+      "name": "count_rows",
+      "priority": 40,
+      "patterns": [
+        "(?:how many|count(?: of)?|total number of|number of) (?P<table>\\w+)(?:\\s+(?:where|with|that) (?P<condition>.+))?",
+        "count (?:all |rows? in )?(?P<table>\\w+)(?:\\s+(?:where|with) (?P<condition>.+))?",
+        "(?:how many|count) (?:rows?|records?|entries?) (?:are )?(?:in|from) (?P<table>\\w+)(?:\\s+(?:where|with) (?P<condition>.+))?"
+      ],
+      "required_slots": ["table"],
+      "sql_template": "SELECT COUNT(*) AS total FROM {table}",
+      "sql_template_filtered": "SELECT COUNT(*) AS total FROM {table} WHERE {condition}",
+      "examples": [
+        "how many users",
+        "count orders where status = 'pending'",
+        "number of employees"
+      ]
+    },
+
+    {
+      "name": "aggregate_sum",
+      "priority": 45,
+      "patterns": [
+        "(?:total|sum(?: of)?|add up) (?P<column>[\\w_]+) (?:from|in|of) (?P<table>\\w+)(?:\\s+(?:where|with) (?P<condition>.+))?",
+        "(?:what is the )?total (?P<column>[\\w_]+) (?:in|of|from) (?P<table>\\w+)(?:\\s+(?:where|with) (?P<condition>.+))?"
+      ],
+      "required_slots": ["table", "column"],
+      "sql_template": "SELECT SUM({column}) AS total_{column} FROM {table}",
+      "sql_template_filtered": "SELECT SUM({column}) AS total_{column} FROM {table} WHERE {condition}",
+      "examples": [
+        "total revenue from orders",
+        "sum of salary in employees where department = 'engineering'"
+      ]
+    },
+
+    {
+      "name": "aggregate_avg",
+      "priority": 45,
+      "patterns": [
+        "(?:average|avg|mean)(?: of)? (?P<column>[\\w_]+) (?:from|in|of) (?P<table>\\w+)(?:\\s+(?:where|with) (?P<condition>.+))?",
+        "(?:what is the )?(?:average|avg|mean) (?P<column>[\\w_]+) (?:in|of|from) (?P<table>\\w+)(?:\\s+(?:where|with) (?P<condition>.+))?"
+      ],
+      "required_slots": ["table", "column"],
+      "sql_template": "SELECT AVG({column}) AS avg_{column} FROM {table}",
+      "examples": [
+        "average salary in employees",
+        "avg price from products where category = 'electronics'"
+      ]
+    },
+
+    {
+      "name": "aggregate_max_min",
+      "priority": 45,
+      "patterns": [
+        "(?:highest|maximum|max|largest|biggest)(?: value of)? (?P<column>[\\w_]+) (?:from|in|of) (?P<table>\\w+)(?:\\s+(?:where|with) (?P<condition>.+))?",
+        "(?:lowest|minimum|min|smallest)(?: value of)? (?P<column>[\\w_]+) (?:from|in|of) (?P<table>\\w+)(?:\\s+(?:where|with) (?P<condition>.+))?"
+      ],
+      "required_slots": ["table", "column"],
+      "sql_template_max": "SELECT MAX({column}) AS max_{column} FROM {table}",
+      "sql_template_min": "SELECT MIN({column}) AS min_{column} FROM {table}",
+      "examples": [
+        "highest salary in employees",
+        "minimum price from products"
+      ]
+    },
+
+    {
+      "name": "group_by",
+      "priority": 50,
+      "patterns": [
+        "(?:count|show|get|list) (?P<table>\\w+) (?:grouped?|by|per|for each) (?P<group_col>[\\w_]+)",
+        "(?:how many|count) (?P<table>\\w+) (?:per|for each|grouped? by) (?P<group_col>[\\w_]+)",
+        "(?:total|sum of) (?P<column>[\\w_]+) (?:from|in) (?P<table>\\w+) (?:per|for each|grouped? by) (?P<group_col>[\\w_]+)",
+        "(?:average|avg) (?P<column>[\\w_]+) (?:from|in) (?P<table>\\w+) (?:per|for each|grouped? by) (?P<group_col>[\\w_]+)",
+        "break(?:down)? (?P<table>\\w+) by (?P<group_col>[\\w_]+)"
+      ],
+      "required_slots": ["table", "group_col"],
+      "sql_template": "SELECT {group_col}, COUNT(*) AS count FROM {table} GROUP BY {group_col}",
+      "sql_template_sum": "SELECT {group_col}, SUM({column}) AS total_{column} FROM {table} GROUP BY {group_col}",
+      "sql_template_avg": "SELECT {group_col}, AVG({column}) AS avg_{column} FROM {table} GROUP BY {group_col}",
+      "examples": [
+        "count users grouped by country",
+        "total salary from employees per department",
+        "breakdown orders by status"
+      ]
+    },
+
+    {
+      "name": "join_inner",
+      "priority": 60,
+      "patterns": [
+        "(?:join|combine|merge) (?P<table>\\w+) (?:and|with) (?P<join_table>\\w+) on (?P<join_on>[\\w.]+ ?= ?[\\w.]+)",
+        "(?:show|get|fetch|select|list) (?P<columns>[\\w ,.*]+?) (?:from|in) (?P<table>\\w+) (?:joined?|with|and) (?P<join_table>\\w+) on (?P<join_on>[\\w.]+ ?= ?[\\w.]+)",
+        "(?:show|get|select) (?:all )?(?P<columns>[\\w ,.*]+?) (?:from|in) (?P<table>\\w+) (?:and|with) (?P<join_table>\\w+)(?:\\s+where (?P<condition>.+))?"
+      ],
+      "required_slots": ["table", "join_table"],
+      "sql_template": "SELECT {columns} FROM {table} INNER JOIN {join_table} ON {join_on}",
+      "sql_template_filtered": "SELECT {columns} FROM {table} INNER JOIN {join_table} ON {join_on} WHERE {condition}",
+      "slot_defaults": {"columns": "*"},
+      "examples": [
+        "join users and orders on users.id = orders.user_id",
+        "show name, total from customers and orders on customers.id = orders.customer_id"
+      ]
+    },
+
+    {
+      "name": "join_left",
+      "priority": 61,
+      "patterns": [
+        "(?:show|get|fetch|select) (?:all )?(?P<columns>[\\w ,.*]+?) (?:from|in) (?P<table>\\w+) (?:with all|including all|left join(?:ed)? with|with optional) (?P<join_table>\\w+)(?:\\s+on (?P<join_on>[\\w.]+ ?= ?[\\w.]+))?(?:\\s+where (?P<condition>.+))?",
+        "left join (?P<table>\\w+) (?:with|and) (?P<join_table>\\w+) on (?P<join_on>[\\w.]+ ?= ?[\\w.]+)"
+      ],
+      "required_slots": ["table", "join_table"],
+      "sql_template": "SELECT {columns} FROM {table} LEFT JOIN {join_table} ON {join_on}",
+      "slot_defaults": {"columns": "*"},
+      "examples": [
+        "show all customers with optional orders",
+        "left join employees with departments on employees.dept_id = departments.id"
+      ]
+    },
+
+    {
+      "name": "order_by",
+      "priority": 55,
+      "patterns": [
+        "(?:show|get|fetch|list) (?P<columns>[\\w ,*]+?) (?:from|in) (?P<table>\\w+) (?:ordered?|sorted?) by (?P<order_col>[\\w_]+)(?: (?P<order_dir>asc(?:ending)?|desc(?:ending)?))?(?:\\s+(?:limit|top|first) (?P<limit>\\d+))?",
+        "(?:top|first|last) (?P<limit>\\d+) (?P<table>\\w+) (?:by|ordered? by|sorted? by) (?P<order_col>[\\w_]+)(?: (?P<order_dir>asc(?:ending)?|desc(?:ending)?))?"
+      ],
+      "required_slots": ["table", "order_col"],
+      "sql_template": "SELECT {columns} FROM {table} ORDER BY {order_col} {order_dir}",
+      "sql_template_limited": "SELECT {columns} FROM {table} ORDER BY {order_col} {order_dir} LIMIT {limit}",
+      "slot_defaults": {"columns": "*", "order_dir": "ASC"},
+      "examples": [
+        "show users sorted by name",
+        "top 10 products by price descending",
+        "list employees ordered by salary desc"
+      ]
+    },
+
+    {
+      "name": "limit",
+      "priority": 25,
+      "patterns": [
+        "(?:show|get|fetch|list) (?:the )?(?:first|top) (?P<limit>\\d+) (?:rows?|records?|entries? )?(?:from|in|of)? (?P<table>\\w+)(?:\\s+(?:where|with) (?P<condition>.+))?",
+        "(?:show|get|fetch|list) (?P<limit>\\d+) (?P<table>\\w+)(?:\\s+(?:where|with) (?P<condition>.+))?",
+        "(?:give me|show me) (?P<limit>\\d+) (?P<columns>[\\w ,*]+?) (?:from|in) (?P<table>\\w+)"
+      ],
+      "required_slots": ["table", "limit"],
+      "sql_template": "SELECT {columns} FROM {table} LIMIT {limit}",
+      "sql_template_filtered": "SELECT {columns} FROM {table} WHERE {condition} LIMIT {limit}",
+      "slot_defaults": {"columns": "*"},
+      "examples": [
+        "show first 5 users",
+        "get top 10 products",
+        "give me 3 name from employees"
+      ]
+    },
+
+    {
+      "name": "insert",
+      "priority": 70,
+      "patterns": [
+        "insert (?:into )?(?P<table>\\w+) (?:values?|with|:)? (?P<values>.+)",
+        "add (?:a |an |new )?(?:record|row|entry) (?:to|into) (?P<table>\\w+) (?:with|:)? (?P<values>.+)",
+        "create (?:a |an |new )?(?:record|row|entry) (?:in|into) (?P<table>\\w+) (?:with|:)? (?P<values>.+)"
+      ],
+      "required_slots": ["table", "values"],
+      "sql_template": "INSERT INTO {table} ({columns}) VALUES ({values})",
+      "examples": [
+        "insert into users name='Alice', age=30",
+        "add new record to products with name='Widget', price=9.99"
+      ]
+    },
+
+    {
+      "name": "update",
+      "priority": 70,
+      "patterns": [
+        "update (?P<table>\\w+) set (?P<set_clause>.+) where (?P<condition>.+)",
+        "(?:change|modify|update|set) (?P<set_clause>.+) (?:in|for|on) (?P<table>\\w+) (?:where|with|that has) (?P<condition>.+)",
+        "(?:change|update|modify) (?P<table>\\w+) (?:record|row) (?:where|with) (?P<condition>.+) (?:to|set) (?P<set_clause>.+)"
+      ],
+      "required_slots": ["table", "set_clause", "condition"],
+      "sql_template": "UPDATE {table} SET {set_clause} WHERE {condition}",
+      "examples": [
+        "update users set name='Bob' where id = 1",
+        "change email in users where id = 5 to email='new@test.com'"
+      ]
+    },
+
+    {
+      "name": "delete",
+      "priority": 70,
+      "patterns": [
+        "delete (?:from )?(?P<table>\\w+) where (?P<condition>.+)",
+        "remove (?:all )?(?:rows?|records?|entries?) (?:from|in) (?P<table>\\w+) (?:where|with|that) (?P<condition>.+)"
+      ],
+      "required_slots": ["table", "condition"],
+      "sql_template": "DELETE FROM {table} WHERE {condition}",
+      "examples": [
+        "delete from users where id = 10",
+        "remove records from logs where created_at < '2023-01-01'"
+      ]
+    },
+
+    {
+      "name": "create_table",
+      "priority": 80,
+      "patterns": [
+        "create (?:a )?(?:new )?table (?P<table>\\w+) (?:with columns?|with fields?|having)? (?P<columns>.+)"
+      ],
+      "required_slots": ["table", "columns"],
+      "sql_template": "CREATE TABLE {table} ({column_definitions})",
+      "examples": [
+        "create table users with columns id int primary key, name varchar(100), email varchar(255)",
+        "create table products with columns id int primary key, name varchar(100), price decimal"
+      ]
+    },
+
+    {
+      "name": "drop_table",
+      "priority": 80,
+      "patterns": [
+        "drop (?:table )?(?P<table>\\w+)",
+        "delete (?:table )?(?P<table>\\w+)",
+        "remove (?:table )?(?P<table>\\w+)"
+      ],
+      "required_slots": ["table"],
+      "sql_template": "DROP TABLE {table}",
+      "dangerous": true,
+      "examples": [
+        "drop table old_logs",
+        "delete table temp_data"
+      ]
+    },
+
+    {
+      "name": "drop_schema_or_view",
+      "priority": 80,
+      "patterns": [
+        "drop (?:schema|database) (?P<table>\\w+)",
+        "drop view (?P<table>\\w+)",
+        "drop (?:function|procedure) (?P<table>\\w+)"
+      ],
+      "required_slots": ["table"],
+      "sql_template": "DROP {table}",
+      "dangerous": true,
+      "examples": [
+        "drop schema old_db",
+        "drop view v_inactive_users",
+        "drop function calc_tax"
+      ]
+    },
+
+    {
+      "name": "describe_table",
+      "priority": 15,
+      "patterns": [
+        "(?:describe|desc|show structure|show schema|show columns?|what columns?|what fields?) (?:of |in |for )?(?P<table>\\w+)",
+        "(?:what are the columns?|what is the structure) (?:of |in )?(?P<table>\\w+)"
+      ],
+      "required_slots": ["table"],
+      "sql_template": "DESCRIBE {table}",
+      "examples": [
+        "describe users",
+        "show columns in products",
+        "what are the columns of orders"
+      ]
+    },
+
+    {
+      "name": "show_tables",
+      "priority": 5,
+      "patterns": [
+        "(?:show|list|get|display) (?:all )?tables?",
+        "what tables? (?:are there|exist|do we have|do i have)",
+        "tables"
+      ],
+      "required_slots": [],
+      "sql_template": "SHOW TABLES",
+      "examples": [
+        "show tables",
+        "list all tables",
+        "what tables are there"
+      ]
+    },
+
+    {
+      "name": "show_databases",
+      "priority": 5,
+      "patterns": [
+        "(?:show|list|get|display) (?:all )?(?:databases?|dbs?|schemas?)",
+        "what databases? (?:are there|exist|do we have)",
+        "databases"
+      ],
+      "required_slots": [],
+      "sql_template": "SHOW DATABASES",
+      "examples": [
+        "show databases",
+        "list all dbs"
+      ]
+    },
+
+    {
+      "name": "having_filter",
+      "priority": 65,
+      "patterns": [
+        "(?:show|get|count|list) (?P<group_col>[\\w_]+) (?:with|having) (?:more than|greater than|over) (?P<having_value>\\d+) (?P<table>\\w+)",
+        "(?:count|show) (?P<table>\\w+) (?:per|by|for each) (?P<group_col>[\\w_]+) (?:having|where count) (?P<having_condition>.+)"
+      ],
+      "required_slots": ["table", "group_col"],
+      "sql_template": "SELECT {group_col}, COUNT(*) AS count FROM {table} GROUP BY {group_col} HAVING count > {having_value}",
+      "examples": [
+        "show category with more than 5 products",
+        "count orders per customer having more than 3"
+      ]
+    },
+
+    {
+      "name": "subquery_in",
+      "priority": 75,
+      "patterns": [
+        "(?:show|get|find) (?P<table>\\w+) (?:where|with) (?P<column>[\\w_]+) (?:in|from) (?P<subquery_table>\\w+)"
+      ],
+      "required_slots": ["table", "column", "subquery_table"],
+      "sql_template": "SELECT * FROM {table} WHERE {column} IN (SELECT {column} FROM {subquery_table})",
+      "examples": [
+        "show products where id in orders"
+      ]
+    },
+
+    {
+      "name": "distinct",
+      "priority": 28,
+      "patterns": [
+        "(?:show|get|list|fetch) (?:unique|distinct) (?P<columns>[\\w ,_]+) (?:from|in) (?P<table>\\w+)(?:\\s+(?:where|with) (?P<condition>.+))?",
+        "(?:unique|distinct) (?P<columns>[\\w ,_]+) (?:from|in) (?P<table>\\w+)"
+      ],
+      "required_slots": ["table", "columns"],
+      "sql_template": "SELECT DISTINCT {columns} FROM {table}",
+      "sql_template_filtered": "SELECT DISTINCT {columns} FROM {table} WHERE {condition}",
+      "examples": [
+        "show unique countries from users",
+        "distinct status from orders"
+      ]
+    },
+
+    {
+      "name": "like_search",
+      "priority": 38,
+      "patterns": [
+        "(?:find|search|show|get) (?P<table>\\w+) (?:where|with|whose) (?P<column>[\\w_]+) (?:contains?|includes?|has|like) ['\"]?(?P<value>[\\w %]+)['\"]?",
+        "(?:find|search) (?P<table>\\w+) (?:by|with) (?P<column>[\\w_]+) (?:starting with|starts? with|begins? with) ['\"]?(?P<value>[\\w]+)['\"]?",
+        "(?:find|search) (?P<table>\\w+) (?:by|with) (?P<column>[\\w_]+) (?:ending with|ends? with) ['\"]?(?P<value>[\\w]+)['\"]?"
+      ],
+      "required_slots": ["table", "column", "value"],
+      "sql_template": "SELECT * FROM {table} WHERE {column} LIKE '%{value}%'",
+      "sql_template_starts": "SELECT * FROM {table} WHERE {column} LIKE '{value}%'",
+      "sql_template_ends": "SELECT * FROM {table} WHERE {column} LIKE '%{value}'",
+      "examples": [
+        "find users where name contains 'alice'",
+        "search products by name starting with 'pro'"
+      ]
+    },
+
+    {
+      "name": "not_like_search",
+      "priority": 39,
+      "patterns": [
+        "(?:find|show|get) (?P<table>\\w+) (?:where|with|whose) (?P<column>[\\w_]+) (?:does not contain|doesn'?t contain|not like|excludes?) ['\"]?(?P<value>[\\w %]+)['\"]?"
+      ],
+      "required_slots": ["table", "column", "value"],
+      "sql_template": "SELECT * FROM {table} WHERE {column} NOT LIKE '%{value}%'",
+      "examples": [
+        "find users where name does not contain 'admin'",
+        "show products where category not like 'temp'"
+      ]
+    },
+
+    {
+      "name": "between_range",
+      "priority": 43,
+      "patterns": [
+        "(?:show|get|find|list|fetch) (?:all )?(?P<table>\\w+) where (?P<column>[\\w_]+) (?:is )?between (?P<low>[\\d.\\-'\"\\w]+) and (?P<high>[\\d.\\-'\"\\w]+)",
+        "(?:show|get|find|list) (?P<table>\\w+) (?:with|where) (?P<column>[\\w_]+) (?:from|between) (?P<low>[\\d.\\-'\"\\w]+) (?:to|and|until) (?P<high>[\\d.\\-'\"\\w]+)"
+      ],
+      "required_slots": ["table", "column", "low", "high"],
+      "sql_template": "SELECT * FROM {table} WHERE {column} BETWEEN {low} AND {high}",
+      "examples": [
+        "show users where age between 20 and 40",
+        "find orders where total between 100 and 500",
+        "get employees with salary from 30000 to 80000"
+      ]
+    },
+
+    {
+      "name": "in_list",
+      "priority": 44,
+      "patterns": [
+        "(?:show|get|find|list) (?P<table>\\w+) (?:where|with) (?P<column>[\\w_]+) (?:is )?(?:one of|in) (?P<values>[\\w ,.'\"]+)",
+        "(?:show|get|find) (?P<table>\\w+) (?:where|with) (?P<column>[\\w_]+) (?:in) \\((?P<values>[\\w ,.'\"]+)\\)"
+      ],
+      "required_slots": ["table", "column", "values"],
+      "sql_template": "SELECT * FROM {table} WHERE {column} IN ({values})",
+      "examples": [
+        "show products where category in electronics, books, toys",
+        "find orders where status one of pending, processing",
+        "get users where role in ('admin', 'editor')"
+      ]
+    },
+
+    {
+      "name": "not_in_list",
+      "priority": 44,
+      "patterns": [
+        "(?:show|get|find|list) (?P<table>\\w+) (?:where|with) (?P<column>[\\w_]+) (?:not in|none of|not one of) (?P<values>[\\w ,.'\"]+)"
+      ],
+      "required_slots": ["table", "column", "values"],
+      "sql_template": "SELECT * FROM {table} WHERE {column} NOT IN ({values})",
+      "examples": [
+        "show orders where status not in cancelled, refunded",
+        "find users where role none of guest, banned"
+      ]
+    },
+
+    {
+      "name": "show_primary_keys",
+      "priority": 12,
+      "patterns": [
+        "(?:show|get|list|display|what are)(?: the)? primary key(?:s)? (?:of|for|in) (?P<table>\\w+)",
+        "(?:primary key|pk) (?:of|for) (?P<table>\\w+)"
+      ],
+      "required_slots": ["table"],
+      "sql_template": "SHOW KEYS FROM {table} WHERE Key_name = 'PRIMARY'",
+      "dialect_overrides": {
+        "postgresql": "SELECT kcu.column_name FROM information_schema.table_constraints tc JOIN information_schema.key_column_usage kcu ON tc.constraint_name = kcu.constraint_name WHERE tc.constraint_type = 'PRIMARY KEY' AND tc.table_name = '{table}'"
+      },
+      "examples": [
+        "show primary keys of users",
+        "primary key for orders",
+        "what are the primary keys in products"
+      ]
+    },
+
+    {
+      "name": "date_filter",
+      "priority": 42,
+      "patterns": [
+        "(?:show|get|find|list) (?P<table>\\w+) (?:from|since|after) (?P<date_from>[\\d\\-/]+)(?:\\s+(?:to|until|before) (?P<date_to>[\\d\\-/]+))?",
+        "(?:show|get|find) (?P<table>\\w+) (?:created|added|inserted|updated) (?:after|since) (?P<date_from>[\\d\\-/]+)",
+        "(?:show|get|find) (?P<table>\\w+) (?:in|during) (?:the )?(?:last|past) (?P<days>\\d+) days?"
+      ],
+      "required_slots": ["table"],
+      "sql_template_range": "SELECT * FROM {table} WHERE created_at BETWEEN '{date_from}' AND '{date_to}'",
+      "sql_template_since": "SELECT * FROM {table} WHERE created_at >= '{date_from}'",
+      "sql_template_last_n_days": "SELECT * FROM {table} WHERE created_at >= DATE_SUB(NOW(), INTERVAL {days} DAY)",
+      "examples": [
+        "show orders from 2024-01-01 to 2024-03-31",
+        "find users created in the last 30 days"
+      ]
+    }
+  ],
+
+  "condition_operators": {
+    "equals":           ["=", "is", "==", "equals", "equal to"],
+    "not_equals":       ["!=", "<>", "is not", "not equal", "not equal to", "isn't"],
+    "greater_than":     [">", "greater than", "more than", "over", "above", "exceeds"],
+    "less_than":        ["<", "less than", "under", "below", "fewer than"],
+    "greater_equal":    [">=", "at least", "minimum", "not less than"],
+    "less_equal":       ["<=", "at most", "maximum", "not more than"],
+    "like":             ["like", "contains", "includes", "has"],
+    "not_like":         ["not like", "does not contain", "doesn't contain", "excludes"],
+    "in":               ["in", "one of", "any of"],
+    "not_in":           ["not in", "none of", "not one of"],
+    "between":          ["between", "from … to", "in range"],
+    "is_null":          ["is null", "is empty", "has no", "missing"],
+    "is_not_null":      ["is not null", "is not empty", "has a", "exists"]
+  },
+
+  "value_coercions": {
+    "true_values":      ["true", "yes", "1", "active", "enabled", "on"],
+    "false_values":     ["false", "no", "0", "inactive", "disabled", "off"],
+    "null_values":      ["null", "none", "empty", "n/a", "na"]
+  },
+
+  "join_inference": {
+    "description": "When join column not specified, infer from schema using these heuristics",
+    "rules": [
+      {"pattern": "{table2}.{table1}_id", "priority": 1},
+      {"pattern": "{table1}.id = {table2}.{table1}_id", "priority": 2},
+      {"pattern": "foreign_key_lookup", "priority": 3}
+    ]
+  },
+
+  "schema_hints": {
+    "common_id_patterns":  ["id", "{table}_id", "pk", "primary_key"],
+    "common_name_patterns": ["name", "title", "label", "description"],
+    "common_date_patterns": ["created_at", "updated_at", "date", "timestamp"],
+    "common_status_patterns": ["status", "state", "active", "enabled", "is_active"]
+  }
+}

@@ -1,0 +1,32 @@
+# ─────────────────────────────────────────────────────────────
+#  TerSQL — requirements.txt  (v0.0.4)
+# ─────────────────────────────────────────────────────────────
+#
+#  Install all runtime deps:
+#      pip install -r requirements.txt
+#
+#  Install with dev/test extras:
+#      pip install -r requirements.txt -r requirements-dev.txt
+# ─────────────────────────────────────────────────────────────
+
+# ── Database drivers ──────────────────────────────────────────
+mysql-connector-python>=9.0.0
+psycopg2-binary>=2.9.9
+pymongo>=4.7.0
+
+# ── Terminal / UI ─────────────────────────────────────────────
+tabulate>=0.9.0
+prompt_toolkit>=3.0.47
+Pygments>=2.18.0
+
+# ── NLP fuzzy matching (SchemaResolver edit-distance) ─────────
+# Used by NLP.py SchemaResolver for typo-tolerant column/table resolution.
+# Falls back to difflib if not installed, but python-Levenshtein is ~10x faster.
+python-Levenshtein>=0.25.0
+
+# ── Upcoming v0.0.4 — SQLite plugin (zero extra deps needed) ──
+# The standard-library `sqlite3` module will be used; no package required.
+
+# ── Optional: async support (translate_batch future upgrade) ──
+# Uncomment if async batch NLP translation is implemented in v0.0.4:
+# anyio>=4.4.0
