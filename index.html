@@ -1766,7 +1766,7 @@
 
         <div class="hero-eyebrow">
             <span class="pulse-dot"></span>
-            v0.0.2 beta · MIT License · Multi-Database · No Coding Required
+            v0.0.3 beta · MIT License · Multi-Database · No Coding Required
         </div>
 
         <div class="badge-row">
@@ -1797,7 +1797,7 @@
         </div>
 
         <div class="hero-meta">
-            <div class="meta-item"><span class="meta-label">Version</span><span class="meta-value">0.0.2 beta</span>
+            <div class="meta-item"><span class="meta-label">Version</span><span class="meta-value">0.0.3 beta</span>
             </div>
             <div class="meta-item"><span class="meta-label">License</span><span class="meta-value"><span class="g">MIT
                         Open Source</span></span></div>
@@ -1815,14 +1815,12 @@
                     <span class="t-title-bar">TerSQL — localhost:3306</span>
                 </div>
                 <div class="t-body">
-                    <span class="t-line"><span class="t-dim">TerSQL v0.0.2 · Type .help for commands</span></span>
+                    <span class="t-line"><span class="t-dim">TerSQL v0.0.3 · Type .help for commands</span></span>
                     <span class="t-line"><span class="t-ok">[connected]</span> <span class="t-dim">mysql:localhost ·
                             user=root</span></span>
                     <span class="t-line">&nbsp;</span>
-                    <span class="t-line"><span class="t-prompt">mysql&gt;</span> <span class="t-dim">show top 5
-                            users</span></span>
-                    <span class="t-line"><span class="t-fix">[auto-fix]</span> <span class="t-dim">→ SELECT * FROM users
-                            LIMIT 5;</span></span>
+                    <span class="t-line"><span class="t-prompt">mysql&gt;</span> <span class="t-dim">show users age between 18 and 30</span></span>
+                    <span class="t-line"><span class="t-fix">[auto-fix]</span> <span class="t-dim">→ SELECT * FROM users WHERE age BETWEEN 18 AND 30;</span></span>
                     <span class="t-line">&nbsp;</span>
                     <table class="t-tbl">
                         <tr>
@@ -1927,8 +1925,8 @@
                     <div class="nl-examples">
                         <button class="nl-btn active" data-id="0">show me all users</button>
                         <button class="nl-btn" data-id="1">count orders by status</button>
-                        <button class="nl-btn" data-id="2">select * users where active</button>
-                        <button class="nl-btn" data-id="3">desc products</button>
+                        <button class="nl-btn" data-id="2">users age between 18 and 30</button>
+                        <button class="nl-btn" data-id="3">category in electronics, books</button>
                         <button class="nl-btn" data-id="4">show top 3 revenue customers</button>
                     </div>
                     <button class="demo-run-btn" id="runBtn">▶ Run Query</button>
@@ -2151,6 +2149,22 @@
                 <div class="f-desc">Use <code>-e</code> to run a single query and exit — perfect for shell scripts and
                     CI pipelines.</div>
             </div>
+            <div class="feature-card reveal"><span class="f-icon">🔡</span>
+                <div class="f-title">BETWEEN &amp; IN List NLP</div>
+                <div class="f-desc">Type <code>"age between 20 and 40"</code> or <code>"category in books, games"</code> — v0.0.3 translates both into valid SQL automatically.</div>
+            </div>
+            <div class="feature-card reveal"><span class="f-icon">🔍</span>
+                <div class="f-title">Fuzzy Schema Matching</div>
+                <div class="f-desc">Minor typos in column or table names are auto-resolved using edit-distance matching. Powered by <code>python-Levenshtein</code>.</div>
+            </div>
+            <div class="feature-card reveal"><span class="f-icon">🔌</span>
+                <div class="f-title">Plugin Introspection</div>
+                <div class="f-desc">Inspect live plugins via <code>.plugins</code>, primary keys via <code>.pks</code>, and enriched table stats via <code>.info</code>.</div>
+            </div>
+            <div class="feature-card reveal"><span class="f-icon">📈</span>
+                <div class="f-title">Session Statistics</div>
+                <div class="f-desc">PluginStats tracks per-session query counts, row totals, average elapsed time, error count, and cache hits. View anytime with <code>.stats</code>.</div>
+            </div>
         </div>
     </section>
 
@@ -2166,7 +2180,7 @@
             <div class="tech-card mysql reveal">
                 <div class="tech-name">MySQL</div>
                 <div class="tech-role">Database Engine</div>
-                <div class="tech-version">mysql-connector-python ≥ 8.0</div>
+                <div class="tech-version">mysql-connector-python ≥ 9.0</div>
             </div>
             <div class="tech-card postgres reveal">
                 <div class="tech-name">PostgreSQL</div>
@@ -2198,6 +2212,11 @@
                 <div class="tech-role">Syntax Highlighting</div>
                 <div class="tech-version">≥ 2.0 · MySQL lexer</div>
             </div>
+            <div class="tech-card reveal" style="--tc-color:#f472b6">
+                <div class="tech-name">Levenshtein</div>
+                <div class="tech-role">Fuzzy Schema Matching</div>
+                <div class="tech-version">python-Levenshtein ≥ 0.25 · typo-tolerant resolution</div>
+            </div>
         </div>
     </section>
 
@@ -2205,7 +2224,7 @@
     <section class="bench-section" id="benchmarks">
         <p class="sec-tag reveal">Benchmarks</p>
         <h2 class="sec-title reveal">Measured. Not guessed.</h2>
-        <p class="sec-body reveal">Internal metrics from the v0.0.2 beta test suite. Open-source — verify them yourself.
+        <p class="sec-body reveal">Internal metrics from the v0.0.3 beta test suite. Open-source — verify them yourself.
         </p>
         <div class="bench-grid">
             <div class="bench-card reveal" style="--bc:#00d4ff;--fill:92%">
@@ -2256,18 +2275,16 @@
         <div class="cmd-grid">
             <div class="reveal">
                 <div class="cmd-group-title">Information</div>
-                <div class="cmd-row"><span class="cmd-name">.status</span><span class="cmd-desc">Connection details and
-                        session stats</span></div>
-                <div class="cmd-row"><span class="cmd-name">.dbs</span><span class="cmd-desc">List all databases</span>
-                </div>
-                <div class="cmd-row"><span class="cmd-name">.tables</span><span class="cmd-desc">List tables or
-                        collections</span></div>
-                <div class="cmd-row"><span class="cmd-name">.schema &lt;t&gt;</span><span class="cmd-desc">Describe
-                        table columns</span></div>
-                <div class="cmd-row"><span class="cmd-name">.use &lt;db&gt;</span><span class="cmd-desc">Switch active
-                        database</span></div>
-                <div class="cmd-row"><span class="cmd-name">.explain &lt;sql&gt;</span><span class="cmd-desc">Print
-                        translation without executing</span></div>
+                <div class="cmd-row"><span class="cmd-name">.status</span><span class="cmd-desc">Connection details and full PluginStats session summary</span></div>
+                <div class="cmd-row"><span class="cmd-name">.dbs</span><span class="cmd-desc">List all databases (MongoDB-aware)</span></div>
+                <div class="cmd-row"><span class="cmd-name">.tables</span><span class="cmd-desc">List tables or collections</span></div>
+                <div class="cmd-row"><span class="cmd-name">.schema &lt;t&gt;</span><span class="cmd-desc">Describe table columns + enriched metadata</span></div>
+                <div class="cmd-row"><span class="cmd-name">.info &lt;t&gt;</span><span class="cmd-desc">Enriched table metadata (size, engine, owner)</span></div>
+                <div class="cmd-row"><span class="cmd-name">.pks &lt;t&gt;</span><span class="cmd-desc">Display primary key columns for a table</span></div>
+                <div class="cmd-row"><span class="cmd-name">.plugins</span><span class="cmd-desc">List all registered database plugins</span></div>
+                <div class="cmd-row"><span class="cmd-name">.stats</span><span class="cmd-desc">Current PluginStats session counters</span></div>
+                <div class="cmd-row"><span class="cmd-name">.use &lt;db&gt;</span><span class="cmd-desc">Switch active database</span></div>
+                <div class="cmd-row"><span class="cmd-name">.explain &lt;sql&gt;</span><span class="cmd-desc">Print translation without executing</span></div>
             </div>
             <div class="reveal">
                 <div class="cmd-group-title">Output & Export</div>
@@ -2332,7 +2349,7 @@
                     <div class="code-line"><span class="cc"># Clone and install dependencies</span></div>
                     <div class="code-line"><span class="cp">$</span><span class="ct"> git clone
                             https://github.com/developersayandutta/TerSQL.git</span></div>
-                    <div class="code-line"><span class="cp">$</span><span class="ct"> cd TerSQL && pip install -r
+                    <div class="code-line"><span class="cp">$</span><span class="ct"> cd TerSQL/v0.0.3 && pip install -r
                             requirements.txt</span></div>
                     <div class="code-line">&nbsp;</div>
                     <div class="code-line"><span class="cc"># Start the interactive terminal</span></div>
@@ -2538,7 +2555,7 @@
 
     <!-- FOOTER -->
     <footer>
-        <div class="footer-brand">TerSQL <span>v0.0.2 beta · MIT License</span></div>
+        <div class="footer-brand">TerSQL <span>v0.0.3 beta · MIT License</span></div>
         <ul class="footer-links">
             <li><a href="https://github.com/developersayandutta/TerSQL" target="_blank">GitHub</a></li>
             <li><a href="https://github.com/developersayandutta/TerSQL/blob/main/README.md" target="_blank">README</a>
@@ -2581,30 +2598,28 @@
                 meta: '3 row(s) returned · 0.0031 sec',
             },
             {
-                nl: "select * users where active",
+                nl: "users age between 18 and 30",
                 fix: true,
-                fixLabel: "[auto-fix] → SELECT * FROM users WHERE active = 1;",
-                sql: `<span class="sql-kw">SELECT</span> * <span class="sql-kw">FROM</span> <span class="sql-tbl">users</span> <span class="sql-kw">WHERE</span> active = <span class="sql-num">1</span>;`,
+                fixLabel: "[auto-fix] → SELECT * FROM users WHERE age BETWEEN 18 AND 30;",
+                sql: `<span class="sql-kw">SELECT</span> * <span class="sql-kw">FROM</span> <span class="sql-tbl">users</span> <span class="sql-kw">WHERE</span> age <span class="sql-kw">BETWEEN</span> <span class="sql-num">18</span> <span class="sql-kw">AND</span> <span class="sql-num">30</span>;`,
                 rows: [
-                    { id: '1', name: 'Alice', active: '<span style="color:var(--accent3)">1</span>' },
-                    { id: '2', name: 'Bob', active: '<span style="color:var(--accent3)">1</span>' },
+                    { id: '2', name: 'Bob', age: '<span style="color:#63b3ff">24</span>', role: 'user' },
+                    { id: '3', name: 'Carol', age: '<span style="color:#63b3ff">28</span>', role: 'user' },
                 ],
-                cols: ['id', 'name', 'active'],
-                meta: '2 row(s) returned · 0.0022 sec',
+                cols: ['id', 'name', 'age', 'role'],
+                meta: '2 row(s) returned · 0.0021 sec',
             },
             {
-                nl: "desc products",
+                nl: "category in electronics, books",
                 fix: true,
-                fixLabel: "[auto-fix] → DESCRIBE products;",
-                sql: `<span class="sql-kw">DESCRIBE</span> <span class="sql-tbl">products</span>;`,
+                fixLabel: "[auto-fix] → SELECT * FROM products WHERE category IN ('electronics', 'books');",
+                sql: `<span class="sql-kw">SELECT</span> * <span class="sql-kw">FROM</span> <span class="sql-tbl">products</span> <span class="sql-kw">WHERE</span> category <span class="sql-kw">IN</span> (<span class="sql-str">'electronics'</span>, <span class="sql-str">'books'</span>);`,
                 rows: [
-                    { Field: 'id', Type: 'int(11)', Null: 'NO', Key: 'PRI' },
-                    { Field: 'name', Type: 'varchar(255)', Null: 'NO', Key: '' },
-                    { Field: 'price', Type: 'decimal(10,2)', Null: 'YES', Key: '' },
-                    { Field: 'stock', Type: 'int(11)', Null: 'YES', Key: 'MUL' },
+                    { id: '1', name: 'Laptop', category: '<span style="color:var(--accent)">electronics</span>', price: '$999' },
+                    { id: '4', name: 'Novel', category: '<span style="color:var(--accent3)">books</span>', price: '$14' },
                 ],
-                cols: ['Field', 'Type', 'Null', 'Key'],
-                meta: '4 row(s) returned · 0.0009 sec',
+                cols: ['id', 'name', 'category', 'price'],
+                meta: '2 row(s) returned · 0.0019 sec',
             },
             {
                 nl: "show top 3 revenue customers",
