@@ -110,7 +110,7 @@ Not sure where to start? Look for issues labelled:
 
 ```bash
 # Fork the repo on GitHub, then:
-git clone https://github.com/<your-username>/TerSQL.git
+git clone https://github.com/developer sayandutta/TerSQL.git
 cd TerSQL
 ```
 
